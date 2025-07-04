@@ -1,0 +1,29 @@
+.main_Error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../Asset/deasertBackground.jpg");
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-position: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), 0 8px 35px rgba(0, 0, 0, 0.8);
+}
+
+.main_Error h1 {
+  font-family: "Poppins";
+  font-size: 4rem;
+  text-align: left;
+  color: black;
+}
+/* .img {
+	background-size: 10rem 10rem;
+	background-repeat: no-repeat;
+	background-origin: border-box;
+	background-position: right 25% top 25%;
+} */
+span {
+  font-size: larger;
+}

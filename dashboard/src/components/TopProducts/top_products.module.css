@@ -1,0 +1,129 @@
+.top_products {
+  width: 100%;
+  height: 100%;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: #ffff;
+  box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.50);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  z-index: 1;
+}
+
+.top_products>span {
+  font-family: 'Poppins';
+  font-weight: 600;
+  line-height: 32px;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-left: 26px;
+}
+
+.product_list {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr 1fr 5rem;
+  grid-template-rows: auto-fit;
+  grid-template-areas:
+    "sno name popular sales"
+  ;
+  gap: 10px;
+  width: 100%;
+  height: 90%;
+}
+
+.product_title>span,
+.product_name>span,
+.product_poularity>span,
+.product_sales>span {
+  font-family: 'Open Sans';
+  color: #96A5B8;
+  font-size: 13px;
+  font-weight: 200;
+  line-height: 16px;
+}
+
+.product_title div,
+.product_name div,
+.product_sales div {
+  font-family: 'Poppins';
+  font-weight: 300;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.product_sales div {
+  text-align: center;
+  width: 50px;
+  height: 24px;
+  border-Radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 5px 10px, rgba(0, 0, 0, 0.23) 0px 3px 3px;
+}
+
+.product_title {
+  grid-area: sno;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+}
+
+.product_name {
+  grid-area: name;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.product_poularity {
+  grid-area: popular;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.product_sales {
+  grid-area: sales;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* progressBar component css below */
+.progress {
+  position: relative;
+  height: 15px;
+  width: 100%;
+  background-color: rgb(233, 236, 239);
+  /* border: 1px solid #c5c5c5; */
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 5px 10px, rgba(0, 0, 0, 0.23) 0px 3px 3px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.progress span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: 'Popins';
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 120;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progressBar {
+  height: 100%;
+  width: 100%;
+  background-color: #00c251;
+  color: #fff;
+  text-align: center;
+
+}

@@ -1,0 +1,23 @@
+.LoadingComponent {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: rgba(255, 255, 255, 0.5);
+	border-top: 5px solid rgba(50, 23, 77, 1);
+	border-right: 3px solid transparent;
+	border-bottom: none;
+	border-left: none;
+	animation: loading 700ms linear infinite;
+}
+
+@keyframes loading {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

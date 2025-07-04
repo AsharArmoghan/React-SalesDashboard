@@ -1,0 +1,120 @@
+.home_main {
+  display: grid;
+  grid-template-columns: minmax(80px, 160px) 1fr;
+  grid-template-rows: minmax(80px, 120px) 1fr;
+  grid-template-areas:
+    "side header"
+    "side content";
+
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  background-color: #eaeaea;
+  z-index: 0;
+}
+
+@media (max-width: 1200px) {
+  .home_main {
+    transition: all ease-in-out 0.2s;
+  }
+
+  .navBar {
+    width: 100px;
+    transition: all ease-in-out step-end 0.2s;
+  }
+}
+
+.navBar {
+  grid-area: side;
+  position: absolute;
+  z-index: 2;
+}
+
+.topBar {
+  grid-area: header;
+  position: fixed;
+  z-index: 2;
+}
+
+.charts_main {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: 50rem 40rem;
+  grid-template-rows: 23rem;
+  grid-template-areas:
+    "c1 c2"
+    "c3 c3";
+  grid-gap: 10px;
+  z-index: 1;
+}
+
+.topSales {
+  grid-area: c1;
+  min-height: 320px;
+  max-width: 780px;
+}
+
+.visitorInsights {
+  grid-area: c2;
+  min-height: 320px;
+  min-width: 350px;
+  max-width: 700px;
+  margin-right: 12px;
+}
+
+.second_grid {
+  grid-area: c3;
+  display: grid;
+  max-width: 1458px;
+  min-height: 1045px;
+  max-height: 100%;
+  grid-template-columns: 1fr 27.5rem 26.6rem;
+  grid-template-rows: 21rem 21rem;
+  grid-template-areas:
+    "TR CS TVR"
+    "TP SM VS";
+  grid-gap: 15px;
+  z-index: 1;
+}
+
+.topRevenue {
+  grid-area: TR;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.customerSatisfaction {
+  grid-area: CS;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.targetReality {
+  grid-area: TVR;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.topProducts {
+  grid-area: TP;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.saleMap {
+  grid-area: SM;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.volumeService {
+  grid-area: VS;
+  max-width: 100%;
+  max-height: 100%;
+}

@@ -1,0 +1,77 @@
+.main_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 100%;
+	height: 100%;
+	border-radius: 20px;
+	border: 1px solid #f8f9fa;
+	background: #fff;
+	box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.5);
+	z-index: 1;
+}
+
+.text {
+	width: 35%;
+	height: 29%;
+	padding: 1.2rem 1.2rem;
+	flex: start;
+	margin-left: 1rem;
+}
+
+.container {
+	/* flex-flow: row nowrap;
+  align-items: flex-end;
+  justify-content: space-between; */
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+	padding: 0 0.5rem;
+	align-items: baseline;
+}
+
+.TopSales,
+.TopOrder,
+.ProductSold,
+.NewCustomers {
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	margin: 0 0.25rem;
+}
+
+.TopSales {
+	width: 150px;
+	height: 130px;
+	flex-shrink: 0;
+	border-radius: 16px;
+	background: #ffe2e5;
+}
+
+.TopOrder {
+	width: 150px;
+	height: 130px;
+	flex-shrink: 0;
+	border-radius: 16px;
+	background: #fff4de;
+}
+
+.ProductSold {
+	width: 150px;
+	height: 130px;
+	flex-shrink: 0;
+	border-radius: 16px;
+	background: #dcfce7;
+}
+
+.NewCustomers {
+	width: 150px;
+	height: 130px;
+	flex-shrink: 0;
+	border-radius: 16px;
+	background: #f3e8ff;
+}
