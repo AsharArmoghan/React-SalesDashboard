@@ -4,8 +4,6 @@ const router = express.Router();
 const requireAuth = require("../Middleware/requireAuth");
 // const requireAuth = require("../Middleware/requireAuth");
 // router.use(requireAuth);
-router.post("/user/home");
-
-router.post("/signup");
+router.post("/home");
 
 module.exports = router;
