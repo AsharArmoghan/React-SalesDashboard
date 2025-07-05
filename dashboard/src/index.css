@@ -5,20 +5,22 @@
 :root,
 html,
 body {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  --black-color: #1d1e2c;
-  --blue-color: #5d5fef;
-  --blue-bar: #0095ff;
-  --purple-color: #387adf;
-  --peach-color: #cebacf;
-  --green-color: #b8e0d2;
-  --green-bar: #00e096;
-  --white-color: #fafbfc;
-  font-family: "Poppins", sans-serif;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	--black-color: #1d1e2c;
+	--blue-color: #5d5fef;
+	--blue-bar: #0095ff;
+	--purple-color: #387adf;
+	--peach-color: #cebacf;
+	--green-color: #b8e0d2;
+	--green-bar: #00e096;
+	--white-color: #fafbfc;
+	font-family: "Segoe UI", "poopins" Tahoma, Geneva, Verdana, sans-serif;
+	--border-radius: 8px;
+	--transition: all 0.3s ease;
 }

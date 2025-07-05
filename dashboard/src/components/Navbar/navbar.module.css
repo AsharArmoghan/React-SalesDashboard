@@ -1,36 +1,46 @@
 .navbar {
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	align-items: center;
+	justify-content: space-evenly;
 	top: 0;
 	left: 0;
 	margin: 0;
 	background-color: #ffff;
-	width: 100%;
+	min-width: 6rem;
+	width: auto;
 	height: 100vh;
-	transition: width 600ms ease;
+	padding-top: 6rem;
+	transition: 0.3s ease-in-out;
 	z-index: 2;
 }
 
 @media (max-width: 1200px) {
 	.navBar {
-		max-width: 120px;
+		transition: 0.3s ease-in-out;
 	}
 	.navbar_nav span {
 		display: none;
-		width: 100px;
 	}
 }
 
 .navbar_nav {
 	display: flex;
-	min-height: 90%;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: center;
 	align-items: center;
-	padding-top: 80px;
 	text-decoration: none;
+	padding: 0;
+	margin: 0;
+	width: 9rem;
+	height: 100%;
 }
+/* .nav_items:hover {
+	background-color: var(--purple-color);
+	border-radius: 22px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	transition: 0.3s ease-in-out;
+	text-decoration: none;
+} */
 
 .nav_link {
 	text-decoration: none;
@@ -39,37 +49,24 @@
 	justify-content: center;
 	align-items: center;
 	color: black;
-	width: 120px;
-	height: 80px;
+	font-size: 0.8rem;
 	transition: var(--transition-speed);
-
-	.nav_link:hover {
-		text-decoration: none;
-		background-color: var(--purple-color);
-		filter: grayscale(50%) opacity(1);
-		transition: var(--transition-speed);
-		border-radius: 22px;
-	}
 }
 
 .signout {
-	padding: 0 15px;
 	cursor: pointer;
-	font-size: 20px;
-	font-weight: 300;
-	line-height: 1.34;
 }
 .nav_items {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 120px;
-	height: 80px;
-}
-.activeNavLink {
 	width: 100%;
 	height: 100%;
+}
+.activeNavLink {
+	width: 90%;
+	height: 70%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -78,10 +75,22 @@
 	color: var(--white-color);
 	border-radius: 22px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	transition: 0.3s;
+	transition: 0.3s ease-in-out;
 	text-decoration: none;
 }
 img {
 	object-fit: fill;
 	color: black;
+	width: 2.3rem;
+	height: 2.3rem;
+}
+
+.nav_link > span {
+	width: 100%;
+	height: 100%;
+	font-size: 1rem;
+	color: black;
+	font-weight: 400;
+	line-height: 2;
+	transition: var(--transition-speed);
 }

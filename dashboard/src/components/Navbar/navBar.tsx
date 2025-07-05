@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import logo from "../../Asset/logo";
 import { useAuth } from "../../Context/AuthContext";
 // import { useAuthContext } from "../../Context/AuthContext";
-
 const NavBar: React.FC = () => {
 	const { logOut } = useAuth();
 	const handleLogout = () => {
@@ -15,31 +14,31 @@ const NavBar: React.FC = () => {
 			<ul className={classes.navbar_nav}>
 				<li className={classes.nav_items}>
 					<NavLink to={"/home"} className={({ isActive }) => (isActive ? classes.activeNavLink : classes.nav_link)}>
-						<img src={logo.graphLogo} width={40} alt='graph_logo' />
+						<img src={logo.graphLogo} alt='graph_logo' width={37} height={37} />
 						<span>DashBoard</span>
 					</NavLink>
 				</li>
 				<li className={classes.nav_items}>
 					<NavLink to={"/board"} className={({ isActive }) => (isActive ? classes.activeNavLink : classes.nav_link)}>
-						<img src={logo.leaderIcon} width={40} alt='graph_logo' />
+						<img src={logo.leaderIcon} alt='graph_logo' width={37} height={37} />
 						<span>LeaderBoard</span>
 					</NavLink>
 				</li>
 				<li className={classes.nav_items}>
 					<NavLink className={({ isActive }) => (isActive ? classes.activeNavLink : classes.nav_link)} to={"/orders"}>
-						<img src={logo.cartLogo} width={40} alt='graph_logo' />
+						<img src={logo.cartLogo} alt='graph_logo' width={37} height={37} />
 						<span>Order</span>
 					</NavLink>
 				</li>
 				<li className={classes.nav_items}>
 					<NavLink className={({ isActive }) => (isActive ? classes.activeNavLink : classes.nav_link)} to={"/products"}>
-						<img src={logo.productLogo} width={40} alt='graph_logo' />
+						<img src={logo.productLogo} alt='graph_logo' width={37} height={37} />
 						<span>Products</span>
 					</NavLink>
 				</li>
 				<li className={classes.nav_items}>
 					<NavLink className={({ isActive }) => (isActive ? classes.activeNavLink : classes.nav_link)} to={"/sales"}>
-						<img src={logo.salesIcon} width={40} alt='graph_logo' />
+						<img src={logo.salesIcon} alt='graph_logo' width={37} height={37} />
 						<span>Sales Report</span>
 					</NavLink>
 				</li>
@@ -50,7 +49,7 @@ const NavBar: React.FC = () => {
 							to={"/login"}
 							onClick={handleLogout}
 						>
-							<img src={logo.signoutIcon} width={35} alt='graph_logo' />
+							<img src={logo.signoutIcon} alt='graph_logo' width={37} height={37} />
 							<span>LogOut</span>
 						</NavLink>
 					</button>

@@ -45,7 +45,7 @@ const Login: React.FC = () => {
 						<div className={classes.title_span}>
 							<span> Welcome to DashBoard </span>
 							<br />
-							<span>Please Use Email Id</span>
+							<span>Use Email Id</span>
 						</div>
 					</div>
 					<div className={classes.main_form}>
