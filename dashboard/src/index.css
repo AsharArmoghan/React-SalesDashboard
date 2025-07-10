@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root,
-html,
-body {
+:root {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
@@ -20,7 +18,7 @@ body {
 	--green-color: #b8e0d2;
 	--green-bar: #00e096;
 	--white-color: #fafbfc;
-	font-family: "Segoe UI", "poopins" Tahoma, Geneva, Verdana, sans-serif;
+	font-family: "poopins", Tahoma, "Geneva", Verdana, sans-serif;
 	--border-radius: 8px;
 	--transition: all 0.3s ease;
 }

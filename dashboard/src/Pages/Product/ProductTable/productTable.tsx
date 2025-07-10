@@ -10,6 +10,10 @@ const Table = ({ data }) => {
 			{ Header: "Title", accessor: "title" },
 			{ Header: "Price", accessor: "price" },
 			{ Header: "Category", accessor: "category" },
+			{ Header: "Brand", accessor: "brand" },
+			{ Header: "Rating", accessor: "rating" },
+			{ Header: "Stock", accessor: "stock" },
+			{ Header: "Thumbnail", accessor: "thumbnail" },
 			{ Header: "Description", accessor: "description" },
 		],
 		[]
@@ -21,9 +25,9 @@ const Table = ({ data }) => {
 		<div className={classes.table_container}>
 			<table {...getTableProps()}>
 				<thead>
-					{headerGroups.map((headerGroup) => (
+					{headerGroups.map(headerGroup => (
 						<tr {...headerGroup.getHeaderGroupProps()}>
-							{headerGroup.headers.map((column) => (
+							{headerGroup.headers.map(column => (
 								<th {...column.getHeaderProps(column.getSortByToggleProps())}>
 									{column.render("Header")}
 									<span>{column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""}</span>
@@ -33,11 +37,11 @@ const Table = ({ data }) => {
 					))}
 				</thead>
 				<tbody {...getTableBodyProps()}>
-					{rows.map((row) => {
+					{rows.map(row => {
 						prepareRow(row);
 						return (
 							<tr {...row.getRowProps()}>
-								{row.cells.map((cell) => (
+								{row.cells.map(cell => (
 									<td {...cell.getCellProps()}>{cell.render("Cell")}</td>
 								))}
 							</tr>

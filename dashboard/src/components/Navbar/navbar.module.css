@@ -2,23 +2,27 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
-	top: 0;
-	left: 0;
 	margin: 0;
 	background-color: #ffff;
-	min-width: 6rem;
-	width: auto;
-	height: 100vh;
-	padding-top: 6rem;
+	width: 8.5rem;
+	height: 100%;
 	transition: 0.3s ease-in-out;
-	z-index: 2;
+	z-index: 5;
 }
 
 @media (max-width: 1200px) {
-	.navBar {
+	.navbar {
+		min-width: 4rem;
+		width: 4rem;
 		transition: 0.3s ease-in-out;
 	}
-	.navbar_nav span {
+	.navbar_nav {
+		min-width: 4rem;
+		width: 4rem;
+		transition: 0.3s ease-in-out;
+	}
+
+	.navbar_nav p {
 		display: none;
 	}
 }
@@ -31,17 +35,9 @@
 	text-decoration: none;
 	padding: 0;
 	margin: 0;
-	width: 9rem;
-	height: 100%;
+	width: auto;
+	height: 80%;
 }
-/* .nav_items:hover {
-	background-color: var(--purple-color);
-	border-radius: 22px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	transition: 0.3s ease-in-out;
-	text-decoration: none;
-} */
-
 .nav_link {
 	text-decoration: none;
 	display: flex;
@@ -49,7 +45,7 @@
 	justify-content: center;
 	align-items: center;
 	color: black;
-	font-size: 0.8rem;
+
 	transition: var(--transition-speed);
 }
 
@@ -64,7 +60,7 @@
 	width: 100%;
 	height: 100%;
 }
-.activeNavLink {
+/* .activeNavLink {
 	width: 90%;
 	height: 70%;
 	display: flex;
@@ -77,6 +73,28 @@
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	transition: 0.3s ease-in-out;
 	text-decoration: none;
+} */
+.activeNavLink {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 92%;
+	height: 80%;
+	background: linear-gradient(120deg, #6b63ff 60%, var(--purple-color) 100%);
+	color: var(--white-color);
+	border-radius: 20px;
+	box-shadow: 0 8px 32px 0 rgba(127, 83, 172, 0.18), 0 1.5px 6px rgba(0, 0, 0, 0.08);
+	transition: box-shadow 0.2s cubic-bezier(0.4, 2, 0.6, 1), transform 0.15s cubic-bezier(0.4, 2, 0.6, 1), background 0.2s, border 0.2s;
+	text-decoration: none;
+	transform: scale(1.06);
+	overflow: hidden;
+}
+
+.activeNavLink:hover,
+.activeNavLink:focus {
+	transform: scale(1.07);
+	background: linear-gradient(135deg, #6653ac 60%, var(--purple-color));
 }
 img {
 	object-fit: fill;
@@ -84,13 +102,22 @@ img {
 	width: 2.3rem;
 	height: 2.3rem;
 }
-
-.nav_link > span {
+.nav_items:hover,
+.nav_items:focus {
+	background-color: #f0f0f0;
+	border-radius: 10px;
+	border: 1px solid #e0e0e0;
+	transition: background-color 0.2s ease-in-out;
+}
+.nav_link > p {
 	width: 100%;
-	height: 100%;
-	font-size: 1rem;
-	color: black;
-	font-weight: 400;
-	line-height: 2;
-	transition: var(--transition-speed);
+	text-align: center;
+	font-size: 0.9rem;
+	font-weight: 500;
+	letter-spacing: 0.05em;
+	line-height: 1.2;
+	color: #333;
+	margin: 0.5rem 0 0.2rem 0;
+	text-transform: capitalize;
+	transition: color 0.2s;
 }

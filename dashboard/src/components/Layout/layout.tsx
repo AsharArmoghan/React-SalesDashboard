@@ -6,14 +6,14 @@ import { Outlet } from "react-router-dom";
 const Layout: React.FC = () => {
 	return (
 		<div className={classes.home_main}>
-			<div className={classes.topBar}>
-				<TopBar />
-			</div>
-			<div className={classes.navBar}>
-				<NavBar />
-			</div>
+			<TopBar />
 			<div className={classes.main}>
-				<Outlet />
+				<div className={classes.navBar}>
+					<NavBar />
+				</div>
+				<div className={classes.content}>
+					<Outlet />
+				</div>
 			</div>
 		</div>
 	);

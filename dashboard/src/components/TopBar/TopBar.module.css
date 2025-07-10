@@ -1,98 +1,91 @@
 .main_container {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-
-  background-color: #ffff;
-  box-shadow: 2px 0px 2px 0.5px #eaeaea;
-  z-index: 2;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 5.67rem;
+	background-color: #ffff;
+	z-index: 10;
 }
 
 .h1 {
-  margin-left: 3rem;
-  color: var(--black-color);
-  font-family: inherit;
-  font-size: 2.2rem;
-  font-weight: 600;
-  grid-area: title;
-  /* top: 30%;
+	margin-left: 3rem;
+	color: var(--black-color);
+	font-family: inherit;
+	font-size: 2.2rem;
+	font-weight: 600;
+	/* top: 30%;
   left: 2%; */
 }
 
-.search {
-  grid-area: search;
-  display: inline-flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  max-width: 20%;
-  left: 40%;
-  width: 100%;
-  max-height: 45%;
-  height: 5rem;
-  margin-left: 0 3rem;
-  border: 2px solid #eaeaea;
-  border-radius: 16px;
-  background: #eaeaea;
-  flex-shrink: 0;
+/* .search {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	width: 12rem;
+	height: 4rem;
+	margin-left: 0 3rem;
+	border: 2px solid #eaeaea;
+	border-radius: 16px;
+	background: #eaeaea;
+	flex-shrink: 0;
 }
 
 .search img {
-  padding: 3px;
+	padding: 3px;
 }
 
 .search input {
-  outline: none;
-  order: none;
-  padding: 3px;
-  margin-right: 4px;
-  height: 80%;
-  width: 100%;
-  border-radius: 10px;
-  background-color: #ffff;
-}
+	outline: none;
+	order: none;
+	padding: 3px;
+	margin-right: 4px;
+	height: 80%;
+	width: 100%;
+	border-radius: 10px;
+	background-color: #ffff;
+} */
 
 .langIcon {
-  display: inline-flex;
-  flex-direction: row;
-  width: 10%;
-  height: auto;
-  right: 15%;
+	display: inline-flex;
+	flex-direction: row;
+	width: 10%;
+	height: auto;
+	right: 15%;
 }
 
 .profile {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  position: relative;
-  flex-wrap: nowrap;
-  max-width: 10%;
-  min-height: 35%;
-  right: 20px;
-  padding: 0 1rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	position: relative;
+	flex-wrap: nowrap;
+	max-width: 10%;
+	min-height: 35%;
+	right: 20px;
+	padding: 0 1rem;
 }
 
 #profile_bellicon {
-  padding: 0 0.5rem;
+	padding: 0 0.5rem;
 }
 
 .user {
-  display: inline-flex;
-  flex-direction: row;
+	display: inline-flex;
+	flex-direction: row;
 }
 
 #user_image {
-  padding: 0 0.1rem;
-  border-radius: 2rem;
-  height: 3.5rem;
+	padding: 0 0.1rem;
+	border-radius: 2rem;
+	height: 3.5rem;
 }
 
 .user_details {
-  padding: 0 0.3rem;
-  font-size: 0.8rem;
+	padding: 0 0.3rem;
+	font-size: 0.8rem;
 }

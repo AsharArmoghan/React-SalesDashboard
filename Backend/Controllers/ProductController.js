@@ -12,7 +12,7 @@ exports.getAllProducts = async (req, res, next) => {
 exports.getProduct = async (req, res, next) => {
 	try {
 		Product.findById(req.param.Id).then(result => {
-			if (!result) res.status(404).json({ message: "User Not Found!" });
+			if (!result) res.status(404).json({ message: "Product Not Found!" });
 			res.status(200).json(result);
 			console.log(result);
 		});

@@ -1,25 +1,15 @@
 .home_main {
-	display: grid;
-	grid-template-columns: minmax(80px, 160px) 1fr;
-	grid-template-rows: minmax(80px, 120px) 1fr;
-	grid-template-areas:
-		"side header"
-		"side content";
-
-	top: 0;
-	left: 0;
-	margin: 0;
-	padding: 0;
-	width: 100vw;
+	display: flex;
+	flex-direction: column;
 	height: 100vh;
 	overflow-x: hidden;
 	overflow-y: auto;
 	scroll-behavior: smooth;
 	background-color: #eaeaea;
-	z-index: 0;
+	z-index: 1;
 }
 
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
 	.home_main {
 		transition: all ease-in-out 0.2s;
 	}
@@ -28,22 +18,17 @@
 		width: 100px;
 		transition: all ease-in-out step-end 0.2s;
 	}
-}
+} */
 
 .navBar {
-	grid-area: side;
-	position: absolute;
-	z-index: 2;
+	z-index: 5;
 }
 
 .topBar {
-	grid-area: header;
-	position: fixed;
-	z-index: 2;
+	z-index: 5;
 }
 .main {
-	grid-area: content;
-	display: grid;
-	grid-template-rows: repeat(auto-fill, minmax(80px, 120px));
-	z-index: 1;
+	display: flex;
+	flex: 1;
+	overflow: hidden;
 }

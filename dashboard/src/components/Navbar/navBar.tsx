@@ -15,44 +15,42 @@ const NavBar: React.FC = () => {
 				<li className={classes.nav_items}>
 					<NavLink to={"/home"} className={({ isActive }) => (isActive ? classes.activeNavLink : classes.nav_link)}>
 						<img src={logo.graphLogo} alt='graph_logo' width={37} height={37} />
-						<span>DashBoard</span>
+						<p>DashBoard</p>
 					</NavLink>
 				</li>
 				<li className={classes.nav_items}>
 					<NavLink to={"/board"} className={({ isActive }) => (isActive ? classes.activeNavLink : classes.nav_link)}>
 						<img src={logo.leaderIcon} alt='graph_logo' width={37} height={37} />
-						<span>LeaderBoard</span>
+						<p>LeaderBoard</p>
 					</NavLink>
 				</li>
 				<li className={classes.nav_items}>
 					<NavLink className={({ isActive }) => (isActive ? classes.activeNavLink : classes.nav_link)} to={"/orders"}>
 						<img src={logo.cartLogo} alt='graph_logo' width={37} height={37} />
-						<span>Order</span>
+						<p>Order</p>
 					</NavLink>
 				</li>
 				<li className={classes.nav_items}>
 					<NavLink className={({ isActive }) => (isActive ? classes.activeNavLink : classes.nav_link)} to={"/products"}>
 						<img src={logo.productLogo} alt='graph_logo' width={37} height={37} />
-						<span>Products</span>
+						<p>Products</p>
 					</NavLink>
 				</li>
 				<li className={classes.nav_items}>
 					<NavLink className={({ isActive }) => (isActive ? classes.activeNavLink : classes.nav_link)} to={"/sales"}>
 						<img src={logo.salesIcon} alt='graph_logo' width={37} height={37} />
-						<span>Sales Report</span>
+						<p>Sales Report</p>
 					</NavLink>
 				</li>
 				<li className={classes.nav_items}>
-					<button className={classes.signout}>
-						<NavLink
-							className={({ isActive }) => (isActive ? classes.activeNavLink : classes.nav_link)}
-							to={"/login"}
-							onClick={handleLogout}
-						>
-							<img src={logo.signoutIcon} alt='graph_logo' width={37} height={37} />
-							<span>LogOut</span>
-						</NavLink>
-					</button>
+					<NavLink
+						className={({ isActive }) => (isActive ? classes.activeNavLink : classes.nav_link)}
+						onClick={handleLogout}
+						to={"/login"}
+					>
+						<img src={logo.signoutIcon} alt='graph_logo' width={37} height={37} />
+						<p>LogOut</p>
+					</NavLink>
 				</li>
 			</ul>
 		</nav>

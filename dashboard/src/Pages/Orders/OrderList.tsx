@@ -1,9 +1,10 @@
 import React from "react";
 // import TopRevenue from "../Homepage/TopRevenue/TopRevenue";
 
-import Table from "./orderTable";
+import Table from "./OrderTable/orderTable";
 import classes from "./orderList.module.css";
-import data from "./orderList.json";
+// import data from "./orderList.json";
+import { useProductContext } from "@/Hooks/useProducts";
 
 // interface orderProps {
 // 	orders: {
@@ -18,12 +19,12 @@ import data from "./orderList.json";
 // }
 
 const OrderList: React.FC = () => {
-	// const [orders,setOrders]= useState([])
+	const { orders } = useProductContext();
 
 	return (
-		<div className={classes.products}>
+		<div className={classes.order}>
 			<div className={classes.table}>
-				<Table data={data} />
+				<Table data={orders} />
 			</div>
 		</div>
 	);

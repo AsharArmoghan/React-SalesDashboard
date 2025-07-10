@@ -1,27 +1,6 @@
 import React, { createContext, useReducer, useContext, ReactNode, Dispatch, useEffect } from "react";
-interface UserId {
-	id: string;
-}
-interface AuthState {
-	isAuthenticated: boolean;
-	userId: UserId | null;
-	token: string | null;
-	isLoading: boolean;
-	error: string | null;
-}
-type AuthAction =
-	| { type: "LOGIN"; payload: { userId: UserId; token: string } }
-	| { type: "LOGOUT" }
-	| { type: "SIGNUP"; payload: { userId: UserId; token: string } }
-	| { type: "ERROR"; payload: string };
+import { AuthState, AuthAction } from "../Types/User";
 
-interface AuthContextType {
-	state: AuthState;
-	dispatch: Dispatch<AuthAction>;
-	logIn: (credentials: any) => Promise<void>;
-	logOut: () => void;
-	signUp: (credentials: any) => Promise<void>;
-}
 const initialState: AuthState = {
 	isAuthenticated: false,
 	userId: null,
@@ -29,6 +8,13 @@ const initialState: AuthState = {
 	isLoading: false,
 	error: null,
 };
+export interface AuthContextType {
+	state: AuthState;
+	dispatch: Dispatch<AuthAction>;
+	logIn: (credentials: any) => Promise<void>;
+	logOut: () => void;
+	signUp: (credentials: any) => Promise<void>;
+}
 
 // Reducer function
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
@@ -73,6 +59,7 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
 	}
 };
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
 const AuthContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 	const [state, dispatch] = useReducer(authReducer, initialState);
 	useEffect(() => {
