@@ -33,13 +33,12 @@ export const ProductContextProvider = ({ children }) => {
 
 	const fetchProducts = async () => {
 		try {
-			const response = await fetch("https://dummyjson.com/products?limit=20");
+			const response = await fetch("http://localhost:8080/api/products/getAllProducts");
 			if (!response.ok) {
 				throw new Error("Failed to fetch products");
 			}
 			const data = await response.json();
-			setProducts(data.products);
-			// console.log("Products fetched successfully:", data.products);
+			setProducts(data);
 		} catch (err) {
 			console.error("Error fetching products:", err);
 			setError(err.message);
@@ -49,13 +48,13 @@ export const ProductContextProvider = ({ children }) => {
 	};
 	const fetchOrders = async () => {
 		try {
-			const response = await fetch("https://dummyjson.com/carts?limit=20");
+			const response = await fetch("http://localhost:8080/api/orders/getAllOrders");
 			if (!response.ok) {
 				throw new Error("Failed to fetch products");
 			}
 			const data = await response.json();
-			setOrders(data.carts);
-			console.log("Products fetched successfully:", data.carts);
+			setOrders(data);
+			console.log("Products fetched successfully:", data);
 		} catch (err) {
 			console.error("Error fetching products:", err);
 			setError(err.message);
