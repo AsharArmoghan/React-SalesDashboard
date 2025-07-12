@@ -2,13 +2,6 @@ import React from "react";
 import ProgressBar from "./ProgressBar";
 import classes from "./top_products.module.css";
 const TopProducts: React.FC = () => {
-	// const [value , setValue] = useState(0);
-	// useEffect(() => {
-	// 	setInterval(() => {
-	// 		setValue((val) => val + 0.3);
-	// 	}, 0);
-	// }, []);
-
 	return (
 		<div className={classes.top_products}>
 			<h5> TopProducts</h5>

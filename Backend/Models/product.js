@@ -19,7 +19,8 @@ const productSchema = new mongoose.Schema(
 		category: { type: String },
 		images: { type: [String] },
 	},
-	{ _id: false }
+	{ _id: false },
+	{ timestamps: true }
 );
 
 module.exports = mongoose.model("Products", productSchema);

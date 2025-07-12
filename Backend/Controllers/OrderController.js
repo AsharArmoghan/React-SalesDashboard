@@ -14,7 +14,6 @@ exports.getOrder = async (req, res, next) => {
 		Order.findById(req.param.Id).then(result => {
 			if (!result) res.status(404).json({ message: "Order Not Found!" });
 			res.status(200).json(result);
-			console.log(result);
 		});
 	} catch (error) {
 		res.status(500).json({ error: "Internal Server Error" });

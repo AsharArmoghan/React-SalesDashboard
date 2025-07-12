@@ -54,7 +54,7 @@ export const ProductContextProvider = ({ children }) => {
 			}
 			const data = await response.json();
 			setOrders(data);
-			console.log("Products fetched successfully:", data);
+			// console.log("Products fetched successfully:", data);
 		} catch (err) {
 			console.error("Error fetching products:", err);
 			setError(err.message);

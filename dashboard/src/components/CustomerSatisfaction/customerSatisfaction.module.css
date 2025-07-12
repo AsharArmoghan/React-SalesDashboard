@@ -1,6 +1,6 @@
 .main_chart {
-	width: 28rem;
-	height: 22rem;
+	width: 30rem;
+	height: 23rem;
 	border: 1px solid white;
 	border-radius: 10px;
 	background-color: #ffff;
@@ -30,12 +30,12 @@
 	justify-content: center;
 	align-items: center;
 	padding-bottom: 0.25rem;
-	padding-top: 0.3rem;
+	padding-top: 1.2rem;
 	margin-left: 2.8rem;
 	border-top: 2px solid #edf2f6;
 	border-top-style: groove;
 	width: 83%;
-	height: 2rem;
+	height: 1.8rem;
 }
 
 .last_month,

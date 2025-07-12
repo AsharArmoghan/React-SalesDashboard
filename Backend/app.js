@@ -39,7 +39,7 @@ mongoose
 
 // const fetchAndSaveProducts = async () => {
 // 	try {
-// 		const response = await fetch("https://dummyjson.com/carts?limit=20");
+// 		const response = await fetch("https://dummyjson.com/carts?limit=30");
 // 		const orders = await response.json().then(data => data.carts);
 // 		await Order.insertMany(orders);
 // 		console.log("Products saved successfully");

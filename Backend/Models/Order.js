@@ -30,7 +30,6 @@ const orderSchema = new mongoose.Schema(
 			type: Number,
 		},
 	},
-	{ _id: false },
 	{ timestamps: true }
 );
 module.exports = mongoose.model("Order", orderSchema);

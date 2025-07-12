@@ -1,17 +1,22 @@
 .main_container {
 	width: 43rem;
 	height: 23rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
 	border-radius: 20px;
 	border: 1px solid #f8f9fa;
 	background: #fff;
-	/* box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.5); */
+	padding: 1rem;
+	overflow: hidden;
+	box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.5);
 	z-index: 1;
 }
 
 .text {
 	display: flex;
 	flex-direction: column;
-	flex: start;
+	justify-content: center;
 	width: 35%;
 	height: 29%;
 	padding: 1.2rem 1.2rem;
@@ -24,7 +29,7 @@
 	p {
 		font-family: "Poppins";
 		font-weight: 400;
-		line-height: 32px;
+		line-height: 1;
 		letter-spacing: 0.04rem;
 		font-size: 20px;
 	}
@@ -33,53 +38,55 @@
 .container {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: space-around;
 	width: 100%;
 	height: 100%;
 	padding: 0 0.5rem;
-	align-items: baseline;
+	align-items: center;
 }
 
 .TopSales,
 .TopOrder,
 .ProductSold,
 .NewCustomers {
-	display: inline-flex;
+	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
-	gap: 1rem;
-	margin: 0 0.25rem;
+	font-family: "Poppins";
+	padding: 0.25rem 0.25rem;
+	width: 23%;
+	height: 135px;
+	border-radius: 16px;
+	background: #ffe2e5;
+	p {
+		font-family: "Poppins";
+		font-weight: 400;
+		line-height: 1;
+		letter-spacing: 0.04rem;
+		font-size: 16px;
+		color: #000;
+	}
+}
+@media screen and (min-width: 1200px) and (max-width: 1450px) {
+	.main_container {
+		width: 98%;
+		height: 98%;
+	}
 }
 
 .TopSales {
-	width: 150px;
-	height: 130px;
-	flex-shrink: 0;
-	border-radius: 16px;
 	background: #ffe2e5;
 }
 
 .TopOrder {
-	width: 150px;
-	height: 130px;
-	flex-shrink: 0;
-	border-radius: 16px;
 	background: #fff4de;
 }
 
 .ProductSold {
-	width: 150px;
-	height: 130px;
-	flex-shrink: 0;
-	border-radius: 16px;
 	background: #dcfce7;
 }
 
 .NewCustomers {
-	width: 150px;
-	height: 130px;
-	flex-shrink: 0;
-	border-radius: 16px;
 	background: #f3e8ff;
 }

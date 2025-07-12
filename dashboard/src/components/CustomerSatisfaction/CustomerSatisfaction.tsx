@@ -1,6 +1,7 @@
 import classes from "./customerSatisfaction.module.css";
 import { Line } from "react-chartjs-2";
 import logos from "../../Asset/logo";
+import data from "@/Asset/data/Dashboard.json";
 // interface LineChartProps {
 // 	data: {
 // 		labels: string[];
@@ -15,13 +16,50 @@ import logos from "../../Asset/logo";
 // 		];
 // 	};
 // }
+const now = new Date();
+const thisMonth = now.getMonth();
+const lastMonth = (thisMonth - 1 + 12) % 12;
 
+// Initialize buckets
+const weeks = ["week1", "week2", "week3", "week4", "week5"];
+const thisMonthMap = { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 };
+const thisMonthCount = { ...thisMonthMap };
+const lastMonthMap = { ...thisMonthMap };
+const lastMonthCount = { ...thisMonthMap };
+
+// Helper to get week of month
+function getWeekOfMonth(date) {
+	const day = date.getDate();
+	return `week${Math.min(Math.ceil(day / 7), 5)}`;
+}
+
+data.forEach(entry => {
+	const createdAt = new Date(entry.createdAt);
+	const month = createdAt.getMonth();
+	const week = getWeekOfMonth(createdAt);
+	const score = entry.satisfaction_score || 0;
+
+	if (month === thisMonth) {
+		thisMonthMap[week] += score;
+		thisMonthCount[week]++;
+	} else if (month === lastMonth) {
+		lastMonthMap[week] += score;
+		lastMonthCount[week]++;
+	}
+});
+
+// Compute average satisfaction per week
+const getAverage = (map, countMap) => weeks.map(week => (countMap[week] ? map[week] / countMap[week] : 0));
+
+const labels = weeks;
+const thisMonthData = getAverage(thisMonthMap, thisMonthCount);
+const lastMonthData = getAverage(lastMonthMap, lastMonthCount);
 const chartData = {
-	labels: ["week1", "week2", "week3", "week4", "week5"],
+	labels: labels,
 	datasets: [
 		{
 			label: "Last Month",
-			data: [80, 60, 70, 65, 80, 90, 59, 45, 30, 60, 55, 59],
+			data: lastMonthData,
 			fill: true,
 			borderColor: "#05C283",
 			tension: 0.4,
@@ -29,7 +67,7 @@ const chartData = {
 		},
 		{
 			label: "This Month",
-			data: [60, 80, 70, 85, 30, 50, 59, 45, 30, 60, 55, 59],
+			data: thisMonthData,
 			fill: true,
 			borderColor: "#0095FF",
 			tension: 0.4,
@@ -45,7 +83,7 @@ const options = {
 			propagate: true,
 		},
 		legend: {
-			display: false,
+			display: true,
 			position: "bottom",
 			align: "center",
 			labels: {
@@ -75,12 +113,11 @@ const costomerSatisfaction: React.FC = () => {
 			<div className={classes.legend}>
 				<div className={classes.last_month}>
 					<img src={logos.ovalblue} alt='ovalBlue' />
-					<div className={classes.text}>Last Month $260</div>
+					<div className={classes.text}>Last Month</div>
 				</div>
-
 				<div className={classes.this_month}>
 					<img src={logos.ovalgreen} alt='ovalGreen' />
-					<div className={classes.text}>This Month $240</div>
+					<div className={classes.text}>This Month</div>
 				</div>
 			</div>
 		</div>

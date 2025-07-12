@@ -9,23 +9,23 @@
 	scroll-behavior: smooth;
 	background-color: #eaeaeaa8;
 	display: grid;
-	grid-template-columns: repeat(6, 1fr);
+	grid-template-columns: repeat(12, 1fr);
 	grid-gap: 1rem;
 	align-items: stretch;
 
 	z-index: 1;
 }
 .large {
-	grid-column: span 3;
+	grid-column: span 6;
 	height: 23rem;
 }
 .small {
-	grid-column: span 2;
-	height: 22rem;
+	grid-column: span 4;
+	height: 23rem;
 }
 .medium {
-	grid-column: span 3;
-	height: 23rem;
+	grid-column: span 6;
+	height: 24rem;
 }
 
 @media (max-width: 1200px) {
@@ -33,89 +33,10 @@
 	.medium,
 	.large,
 	.mobile {
-		grid-column: span 6 !important;
+		grid-column: span 12 !important;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		height: 100%;
 	}
 }
-
-/* .charts_main {
-	width: 100%;
-	height: auto;
-	display: flex;
-	justify-content: space-evenly;
-	flex-direction: row;
-	align-items: center;
-	margin-bottom: 1rem;
-	z-index: 1;
-} */
-
-/* .topSales {
-	min-height: 320px;
-	max-width: 780px;
-}
-
-.visitorInsights {
-	min-height: 320px;
-	min-width: 350px;
-	max-width: 700px;
-	margin-right: 12px;
-} */
-
-/* .second_grid {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: space-evenly;
-	align-items: center;
-	gap: 1rem;
-	width: 90%;
-	margin-left: 2rem;
-	z-index: 1;
-}
-.third_grid {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: space-around;
-	align-items: center;
-	gap: 2rem;
-	width: 90%;
-	z-index: 1;
-} */
-/* .topRevenue {
-
-	margin-bottom: 1rem;
-	max-width: 100%;
-	max-height: 100%;
-}
-
-.customerSatisfaction {
-
-	max-width: 100%;
-	max-height: 100%;
-}
-
-.targetReality {
-
-	max-width: 100%;
-	max-height: 100%;
-}
-
-.topProducts {
-
-	max-width: 100%;
-	max-height: 100%;
-}
-
-.saleMap {
-
-	max-width: 100%;
-	max-height: 100%;
-}
-
-.volumeService {
-
-	max-width: 100%;
-	max-height: 100%;
-} */

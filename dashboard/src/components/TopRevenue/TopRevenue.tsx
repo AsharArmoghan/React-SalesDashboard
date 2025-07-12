@@ -1,44 +1,56 @@
-import React from 'react';
-import classes from './TopRevenue.module.css';
-import { Bar } from 'react-chartjs-2';
-import { Chart, registerables } from 'chart.js';
+import React from "react";
+import classes from "./TopRevenue.module.css";
+import { Bar } from "react-chartjs-2";
+import { Chart, registerables } from "chart.js";
+import data from "@/Asset/data/Dashboard.json";
 Chart.register(...registerables);
+
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+// Initialize maps for each day
+const onlineMap = {};
+const offlineMap = {};
+days.forEach(day => {
+	onlineMap[day] = 0;
+	offlineMap[day] = 0;
+});
+
+data.forEach(entry => {
+	const day = entry.day_of_week;
+	const channel = entry.sales_channel?.toLowerCase();
+	const amount = entry.amount_spent || 0;
+
+	if (days.includes(day)) {
+		if (channel === "online") {
+			onlineMap[day] += amount;
+		} else if (channel === "offline") {
+			offlineMap[day] += amount;
+		}
+	}
+});
+
+const onlineData = days.map(day => onlineMap[day]);
+const offlineData = days.map(day => offlineMap[day]);
 
 const TotalRevenue: React.FC = () => {
 	const data = {
-		labels: [
-			'Monday',
-			'Tuesday',
-			'Wednesday',
-			'Thursday',
-			'Friday',
-			'Saturday',
-			'Sunday',
-		],
+		labels: days,
 		datasets: [
 			{
-				label: 'Online Sales',
+				label: "Online Sales",
 				barPercentage: 0.5,
-				labelColorBorderRadius: '20px',
-				backgroundColor: 'rgba(0, 149, 255, 1)',
-				hoverBackgroundColor:
-					'rgba(0, 149, 255, 0.5)',
-				data: [
-					20000, 22000, 18000, 21000, 23000,
-					22000, 24000,
-				],
+				labelColorBorderRadius: "20px",
+				backgroundColor: "rgba(0, 149, 255, 1)",
+				hoverBackgroundColor: "rgba(0, 149, 255, 0.5)",
+				data: onlineData,
 			},
 			{
-				label: 'Offline Sales',
+				label: "Offline Sales",
 				barPercentage: 0.5,
-				labelColorBorderRadius: '20px',
-				backgroundColor: 'rgba(0, 224, 150, 1)',
-				hoverBackgroundColor:
-					'rgba(0, 224, 150, 0.5)',
-				data: [
-					18000, 19000, 17000, 20000, 21000,
-					19000, 22000,
-				],
+				labelColorBorderRadius: "20px",
+				backgroundColor: "rgba(0, 224, 150, 1)",
+				hoverBackgroundColor: "rgba(0, 224, 150, 0.5)",
+				data: offlineData,
 			},
 		],
 	};
@@ -59,12 +71,12 @@ const TotalRevenue: React.FC = () => {
 		plugins: {
 			legend: {
 				display: true,
-				position: 'top',
-				align: 'center',
+				position: "top",
+				align: "center",
 				labels: {
 					usePointStyle: true,
-					pointStyle: 'circle',
-					color: '#000',
+					pointStyle: "circle",
+					color: "#000",
 					boxWidth: 8,
 					padding: 10,
 				},
@@ -75,11 +87,7 @@ const TotalRevenue: React.FC = () => {
 	return (
 		<div className={classes.chart}>
 			<h5>Total Revenue</h5>
-			<Bar
-				className={classes.barChart}
-				data={data}
-				options={options}
-			/>
+			<Bar className={classes.barChart} data={data} options={options} />
 		</div>
 	);
 };

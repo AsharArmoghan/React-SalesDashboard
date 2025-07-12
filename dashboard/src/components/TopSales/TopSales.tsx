@@ -1,7 +1,23 @@
-import React from 'react';
-import classes from './TopSales.module.css';
+import React from "react";
+import classes from "./TopSales.module.css";
+import { useProductContext } from "@/Hooks/useProducts";
 
 const TopSales: React.FC = () => {
+	const { orders, products } = useProductContext();
+	const totalSales = Math.round(orders.reduce((acc, order) => acc + order.total, 0));
+	const formattedSales = new Intl.NumberFormat("en-US", {
+		style: "currency",
+		currency: "USD",
+		minimumFractionDigits: 0,
+		maximumFractionDigits: 2,
+	}).format(totalSales);
+	const totalOrders = orders.length;
+	const totalProductsSold = orders.reduce((acc, product) => acc + product.totalQuantity, 0);
+	const newCustomers = orders.reduce((accumulator, cart) => {
+		accumulator.add(cart.userId);
+		return accumulator;
+	}, new Set()).size;
+
 	return (
 		<div className={classes.main_container}>
 			<div className={classes.text}>
@@ -10,19 +26,19 @@ const TopSales: React.FC = () => {
 			</div>
 			<div className={classes.container}>
 				<div className={classes.TopSales}>
-					<h4>$1k</h4>
+					<h4>{formattedSales}</h4>
 					<p>Total Sales</p>
 				</div>
 				<div className={classes.TopOrder}>
-					<h4>300</h4>
+					<h4>{totalOrders}</h4>
 					<p>Total Orders</p>
 				</div>
 				<div className={classes.ProductSold}>
-					<h4>5</h4>
+					<h4>{totalProductsSold}</h4>
 					<p>Product Sold</p>
 				</div>
 				<div className={classes.NewCustomers}>
-					<h4>8</h4>
+					<h4>{newCustomers}</h4>
 					<p>New Customers</p>
 				</div>
 			</div>
