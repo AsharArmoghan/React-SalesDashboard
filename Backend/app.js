@@ -7,9 +7,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 const productRoute = require("./Routes/productRoute");
 const userRoute = require("./Routes/userRoute");
-// const dashboard = require("./Routes/dashboard");
-// const Order = require("./Models/Order");
+const dashboardRoute = require("./Routes/dashboard");
 const orderRoute = require("./Routes/orderRoute");
+const Dashboard = require("./Models/Dashboard");
 
 app.use(cors());
 
@@ -37,11 +37,14 @@ mongoose
 		console.log(error, "Can't connect to DataBase");
 	});
 
+const data = require("../dashboard/src/Asset/data/Dashboard.json");
+
 // const fetchAndSaveProducts = async () => {
 // 	try {
-// 		const response = await fetch("https://dummyjson.com/carts?limit=30");
-// 		const orders = await response.json().then(data => data.carts);
-// 		await Order.insertMany(orders);
+// 		// const response = await fetch("./Asset/data/Dashboard.json");
+// 		const dashboard = data;
+// 		// const dashboard = await response.json();
+// 		await Dashboard.insertMany(dashboard);
 // 		console.log("Products saved successfully");
 // 	} catch (error) {
 // 		console.error("Error fetching or saving products:", error.message);
@@ -56,6 +59,7 @@ app.listen(process.env.PORT || 8080, () => {
 app.use("/api/products", productRoute);
 app.use("/api/users", userRoute);
 app.use("/api/orders", orderRoute);
+app.use("/api/dashboards", dashboardRoute);
 
 app.get("/", (req, res) => {
 	res.send("Helloo connected to Backend");

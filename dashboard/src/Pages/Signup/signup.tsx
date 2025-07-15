@@ -42,7 +42,6 @@ const Register: React.FC = () => {
 							<h1 className={classes.title_h1}>DashBoard</h1>
 							<h1 className={classes.title_h1}>DashBoard</h1>
 						</div>
-
 						<div className={classes.title_span}>
 							<span> Welcome to DashBoard </span>
 							<br />
@@ -50,8 +49,8 @@ const Register: React.FC = () => {
 						</div>
 					</div>
 					<div className={classes.main_form}>
+						<label className={classes.form_label}>Sign Up</label>
 						<form className={classes.form} onSubmit={handleSubmit}>
-							<label className={classes.form_label}>Sign Up</label>
 							<input
 								type='text'
 								name='username'

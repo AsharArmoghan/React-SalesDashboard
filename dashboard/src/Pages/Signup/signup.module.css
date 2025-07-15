@@ -1,6 +1,7 @@
-@media only screen and (max-width: 1050px) {
+@media only screen and (max-width: 1250px) {
 	.form_container {
 		width: 100%;
+		height: 100%;
 		padding: 0 0.25rem;
 		flex-direction: column;
 		justify-content: space-evenly;
@@ -10,30 +11,36 @@
 		overflow-x: hidden;
 	}
 }
+.error {
+	color: red;
+	background-color: white;
+	font-weight: 400;
+}
 .container {
 	width: 100%;
 	height: 100%;
-	min-height: 60rem;
 	padding: 2rem 0;
 }
 .form_container {
 	height: 100%;
-	min-height: 46rem;
+	height: 100%;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	align-items: center;
-	flex-shrink: 0;
 	text-align: center;
-	align-content: center;
-	padding: 1rem 2rem;
+	padding: 2rem 5rem;
 	background-color: rgba(255, 255, 255, 0.68);
 }
 .title {
-	/* position: relative; */
 	width: 100%;
-	height: 100%;
+	height: 20rem;
 	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
 }
 .h1 {
 	display: flex;
@@ -41,6 +48,7 @@
 	align-items: center;
 	margin-left: 500px;
 	margin-top: 100px;
+	/* position: relative; */
 }
 .title_h1 {
 	font-family: "Poppins";
@@ -59,13 +67,13 @@
 .title h1:nth-child(2) {
 	color: var(--purple-color);
 	animation: animate 4s ease-in-out infinite;
-	animation: animate 4s ease-in-out infinite;
 }
 .title_span {
 	font-family: "Poppins";
 	font-size: 1.5rem;
 	font-weight: 300;
 	line-height: 1;
+	stroke-linejoin: round;
 	padding: 0.25rem;
 	color: var(--purple-color);
 }
@@ -73,30 +81,56 @@
 .main_form {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	align-items: center;
-	flex-shrink: 0;
 	text-align: center;
+	flex-shrink: 0;
 	width: 26rem;
-	height: 30rem;
+	height: 32rem;
 	padding: 0 3rem;
+	border-radius: var(--border-radius);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
 	font-family: "Poppins";
+	background-color: rgba(218, 218, 218, 0.682);
 	margin: 0 100px;
 }
 
 .form {
-	align-self: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	text-align: center;
 }
-.form input {
-	width: 90%;
+.form > input:focus {
+	outline: none;
+	border-color: var(--primary);
+	box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+.form_lable {
+	font-family: "Poppins";
+	font-size: 2.5rem;
+	font-weight: 300;
+	line-height: 1;
+
+	color: var(--purple-color);
+}
+.form > input {
+	height: 20%;
+	/* width: 90%; */
 	text-decoration: none;
 	border: none;
 	outline: offset 1px;
 	border-radius: 0.5rem;
-	margin: 0.5rem;
-	padding: 0.6rem;
+	margin: 1rem;
+	padding: 0.3rem;
 	background-color: rgba(0, 0, 0, 0.07);
+	width: 100%;
+	padding: 0.8rem;
+	border: 1px solid var(--light-gray);
+	border-radius: var(--border-radius);
+	font-size: 1rem;
+	transition: var(--transition);
 }
 .btn {
 	display: inline-block;
@@ -130,7 +164,6 @@
 	height: 1px;
 	width: 10rem;
 }
-
 @keyframes animate {
 	0%,
 	100% {
@@ -141,17 +174,3 @@
 		clip-path: polygon(0% 60%, 15% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
 	}
 }
-/* .title_h1 {
-	animation: wiggle 400ms 2s 8 ease-out none;
-}
-@keyframes wiggle {
-	0% {
-		transform: rotateZ(0%);
-	}
-	50% {
-		transform: rotateZ(-5deg);
-	}
-	100% {
-		transform: rotateZ(5deg);
-	}
-} */

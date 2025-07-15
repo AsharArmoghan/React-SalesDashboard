@@ -3,7 +3,7 @@ import classes from "./targetvsReality.module.css";
 import logos from "../../Asset/logo";
 import { Chart, registerables } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import data from "@/Asset/data/Dashboard.json";
+import { useProductContext } from "@/Hooks/useProducts";
 Chart.register(...registerables);
 
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
@@ -11,18 +11,6 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "S
 const realityMap = Array(12).fill(0);
 const targetMap = Array(12).fill(0);
 
-data.forEach(entry => {
-	const date = new Date(entry.createdAt);
-	const monthIndex = date.getMonth();
-	const value = entry.amount_spent || 0;
-	const type = entry.service_type;
-
-	if (type === "Target Sales") {
-		targetMap[monthIndex] += value;
-	} else if (type === "Reality Sales") {
-		realityMap[monthIndex] += value;
-	}
-});
 const chartData = {
 	labels: monthNames,
 	datasets: [
@@ -57,10 +45,23 @@ const option = {
 	} as any,
 };
 const TargetvsReality: React.FC = () => {
+	const { dashboard } = useProductContext();
 	let targetSales = 0;
 	let realitySales = 0;
+	dashboard.forEach(entry => {
+		const date = new Date(entry.createdAt);
+		const monthIndex = date.getMonth();
+		const value = entry.amount_spent || 0;
+		const type = entry.service_type;
 
-	data.forEach(entry => {
+		if (type === "Target Sales") {
+			targetMap[monthIndex] += value;
+		} else if (type === "Reality Sales") {
+			realityMap[monthIndex] += value;
+		}
+	});
+
+	dashboard.forEach(entry => {
 		const value = entry.amount_spent || 0;
 
 		if (entry.service_type === "Target Sales") {

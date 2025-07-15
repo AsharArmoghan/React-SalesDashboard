@@ -120,4 +120,5 @@ img {
 	margin: 0.5rem 0 0.2rem 0;
 	text-transform: capitalize;
 	transition: color 0.2s;
+	font-family: "poppins", sans-serif;
 }

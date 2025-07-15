@@ -2,37 +2,38 @@ import React from "react";
 import classes from "./TopRevenue.module.css";
 import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
-import data from "@/Asset/data/Dashboard.json";
+import { useProductContext } from "@/Hooks/useProducts";
 Chart.register(...registerables);
 
-const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-
-// Initialize maps for each day
-const onlineMap = {};
-const offlineMap = {};
-days.forEach(day => {
-	onlineMap[day] = 0;
-	offlineMap[day] = 0;
-});
-
-data.forEach(entry => {
-	const day = entry.day_of_week;
-	const channel = entry.sales_channel?.toLowerCase();
-	const amount = entry.amount_spent || 0;
-
-	if (days.includes(day)) {
-		if (channel === "online") {
-			onlineMap[day] += amount;
-		} else if (channel === "offline") {
-			offlineMap[day] += amount;
-		}
-	}
-});
-
-const onlineData = days.map(day => onlineMap[day]);
-const offlineData = days.map(day => offlineMap[day]);
-
 const TotalRevenue: React.FC = () => {
+	const { dashboard } = useProductContext();
+	const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+	// Initialize maps for each day
+	const onlineMap = {};
+	const offlineMap = {};
+	days.forEach(day => {
+		onlineMap[day] = 0;
+		offlineMap[day] = 0;
+	});
+
+	dashboard.forEach(entry => {
+		const day = entry.day_of_week;
+		const channel = entry.sales_channel?.toLowerCase();
+		const amount = entry.amount_spent || 0;
+
+		if (days.includes(day)) {
+			if (channel === "online") {
+				onlineMap[day] += amount;
+			} else if (channel === "offline") {
+				offlineMap[day] += amount;
+			}
+		}
+	});
+
+	const onlineData = days.map(day => onlineMap[day]);
+	const offlineData = days.map(day => offlineMap[day]);
+
 	const data = {
 		labels: days,
 		datasets: [

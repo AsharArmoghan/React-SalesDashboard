@@ -3,7 +3,7 @@ import classes from "./TopSales.module.css";
 import { useProductContext } from "@/Hooks/useProducts";
 
 const TopSales: React.FC = () => {
-	const { orders, products } = useProductContext();
+	const { orders } = useProductContext();
 	const totalSales = Math.round(orders.reduce((acc, order) => acc + order.total, 0));
 	const formattedSales = new Intl.NumberFormat("en-US", {
 		style: "currency",

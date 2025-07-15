@@ -30,7 +30,7 @@ const TopBar: React.FC = () => {
 				<div className='relative flex h-20 items-center justify-between'>
 					<div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-start'>
 						<div className='flex shrink-0 items-center'>
-							<p className='text-black font-semibold text-3xl'>Dashboard</p>
+							<p className='text-4xl font-semibold leading-tight text-gray-800 font-[poppins]'>Dashboard</p>
 						</div>
 					</div>
 					<div className='absolute inset-y-0 right-0  flex flex-row  justify-end  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>

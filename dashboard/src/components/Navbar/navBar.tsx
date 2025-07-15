@@ -48,8 +48,8 @@ const NavBar: React.FC = () => {
 						onClick={handleLogout}
 						to={"/login"}
 					>
-						<img src={logo.signoutIcon} alt='graph_logo' width={37} height={37} />
-						<p>LogOut</p>
+						{/* <img src={logo.signoutIcon} alt='graph_logo' width={37} height={37} />
+						<p>LogOut</p> */}
 					</NavLink>
 				</li>
 			</ul>

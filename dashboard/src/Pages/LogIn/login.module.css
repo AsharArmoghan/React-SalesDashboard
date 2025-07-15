@@ -1,6 +1,7 @@
 @media only screen and (max-width: 1250px) {
 	.form_container {
 		width: 100%;
+		height: 100%;
 		padding: 0 0.25rem;
 		flex-direction: column;
 		justify-content: space-evenly;
@@ -15,29 +16,31 @@
 	background-color: white;
 	font-weight: 400;
 }
-div.container {
+.container {
 	width: 100%;
 	height: 100%;
-	min-height: 60rem;
 	padding: 2rem 0;
 }
 .form_container {
 	height: 100%;
-	min-height: 46rem;
+	height: 100%;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	align-items: center;
-	flex-shrink: 0;
 	text-align: center;
-	align-content: center;
-	padding: 1rem 2rem;
+	padding: 2rem 5rem;
 	background-color: rgba(255, 255, 255, 0.68);
 }
 .title {
 	width: 100%;
-	height: 100%;
+	height: 20rem;
 	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
 }
 .h1 {
 	display: flex;
@@ -85,13 +88,19 @@ div.container {
 	width: 26rem;
 	height: 27rem;
 	padding: 0 3rem;
+	border-radius: var(--border-radius);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
 	font-family: "Poppins";
+	background-color: rgba(218, 218, 218, 0.682);
 	margin: 0 100px;
 }
 
 .form {
-	align-self: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
 }
 .form input:focus {
 	outline: none;
@@ -110,11 +119,10 @@ div.container {
 	height: 20%;
 	/* width: 90%; */
 	text-decoration: none;
-	/* border: none; */
-	/* outline: offset 1px; */
-	/* border-radius: 0.5rem; */
+	border: none;
+	outline: offset 1px;
+	border-radius: 0.5rem;
 	margin: 1rem;
-	padding: 0.3rem;
 	background-color: rgba(0, 0, 0, 0.07);
 	width: 100%;
 	padding: 0.8rem;

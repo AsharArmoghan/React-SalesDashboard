@@ -4,6 +4,7 @@ const router = express.Router();
 const requireAuth = require("../Middleware/requireAuth");
 // const requireAuth = require("../Middleware/requireAuth");
 // router.use(requireAuth);
-router.post("/home");
+router.get("/getDashboard", dashboard.getDashboard);
+// router.post("/saveDashboard", dashboard.saveDashboard);
 
 module.exports = router;

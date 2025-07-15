@@ -1,7 +1,8 @@
 import classes from "./customerSatisfaction.module.css";
 import { Line } from "react-chartjs-2";
 import logos from "../../Asset/logo";
-import data from "@/Asset/data/Dashboard.json";
+import { useProductContext } from "@/Hooks/useProducts";
+
 // interface LineChartProps {
 // 	data: {
 // 		labels: string[];
@@ -16,96 +17,94 @@ import data from "@/Asset/data/Dashboard.json";
 // 		];
 // 	};
 // }
-const now = new Date();
-const thisMonth = now.getMonth();
-const lastMonth = (thisMonth - 1 + 12) % 12;
 
-// Initialize buckets
-const weeks = ["week1", "week2", "week3", "week4", "week5"];
-const thisMonthMap = { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 };
-const thisMonthCount = { ...thisMonthMap };
-const lastMonthMap = { ...thisMonthMap };
-const lastMonthCount = { ...thisMonthMap };
+const CostomerSatisfaction: React.FC = () => {
+	const { dashboard } = useProductContext();
+	const now = new Date();
+	const thisMonth = now.getMonth();
+	const lastMonth = (thisMonth - 1 + 12) % 12;
 
-// Helper to get week of month
-function getWeekOfMonth(date) {
-	const day = date.getDate();
-	return `week${Math.min(Math.ceil(day / 7), 5)}`;
-}
+	// Initialize buckets
+	const weeks = ["week1", "week2", "week3", "week4", "week5"];
+	const thisMonthMap = { week1: 0, week2: 0, week3: 0, week4: 0, week5: 0 };
+	const thisMonthCount = { ...thisMonthMap };
+	const lastMonthMap = { ...thisMonthMap };
+	const lastMonthCount = { ...thisMonthMap };
 
-data.forEach(entry => {
-	const createdAt = new Date(entry.createdAt);
-	const month = createdAt.getMonth();
-	const week = getWeekOfMonth(createdAt);
-	const score = entry.satisfaction_score || 0;
-
-	if (month === thisMonth) {
-		thisMonthMap[week] += score;
-		thisMonthCount[week]++;
-	} else if (month === lastMonth) {
-		lastMonthMap[week] += score;
-		lastMonthCount[week]++;
+	// Helper to get week of month
+	function getWeekOfMonth(date) {
+		const day = date.getDate();
+		return `week${Math.min(Math.ceil(day / 7), 5)}`;
 	}
-});
+	dashboard.forEach(entry => {
+		const createdAt = new Date(entry.createdAt);
+		const month = createdAt.getMonth();
+		const week = getWeekOfMonth(createdAt);
+		const score = entry.satisfaction_score || 0;
 
-// Compute average satisfaction per week
-const getAverage = (map, countMap) => weeks.map(week => (countMap[week] ? map[week] / countMap[week] : 0));
-
-const labels = weeks;
-const thisMonthData = getAverage(thisMonthMap, thisMonthCount);
-const lastMonthData = getAverage(lastMonthMap, lastMonthCount);
-const chartData = {
-	labels: labels,
-	datasets: [
-		{
-			label: "Last Month",
-			data: lastMonthData,
-			fill: true,
-			borderColor: "#05C283",
-			tension: 0.4,
-			backgroundColor: "rgba(5,194,131, 0.2)",
-		},
-		{
-			label: "This Month",
-			data: thisMonthData,
-			fill: true,
-			borderColor: "#0095FF",
-			tension: 0.4,
-			backgroundColor: "rgba(0 ,149 , 255, 0.2)",
-		},
-	],
-};
-const options = {
-	responsive: true,
-	maintainAspectRatio: true,
-	plugins: {
-		filler: {
-			propagate: true,
-		},
-		legend: {
-			display: true,
-			position: "bottom",
-			align: "center",
-			labels: {
-				usePointStyle: true,
-				pointStyle: "dash",
-				color: "#000",
-				boxWidth: 20,
-				padding: 10,
+		if (month === thisMonth) {
+			thisMonthMap[week] += score;
+			thisMonthCount[week]++;
+		} else if (month === lastMonth) {
+			lastMonthMap[week] += score;
+			lastMonthCount[week]++;
+		}
+	});
+	const getAverage = (map, countMap) => weeks.map(week => (countMap[week] ? map[week] / countMap[week] : 0));
+	const labels = weeks;
+	const thisMonthData = getAverage(thisMonthMap, thisMonthCount);
+	const lastMonthData = getAverage(lastMonthMap, lastMonthCount);
+	const chartData = {
+		labels: labels,
+		datasets: [
+			{
+				label: "Last Month",
+				data: lastMonthData,
+				fill: true,
+				borderColor: "#05C283",
+				tension: 0.4,
+				backgroundColor: "rgba(5,194,131, 0.2)",
+			},
+			{
+				label: "This Month",
+				data: thisMonthData,
+				fill: true,
+				borderColor: "#0095FF",
+				tension: 0.4,
+				backgroundColor: "rgba(0 ,149 , 255, 0.2)",
+			},
+		],
+	};
+	const options = {
+		responsive: true,
+		maintainAspectRatio: true,
+		plugins: {
+			filler: {
+				propagate: true,
+			},
+			legend: {
+				display: true,
+				position: "bottom",
+				align: "center",
+				labels: {
+					usePointStyle: true,
+					pointStyle: "dash",
+					color: "#000",
+					boxWidth: 20,
+					padding: 10,
+				},
 			},
 		},
-	},
-	scales: {
-		x: {
-			display: false,
-			label: false,
+		scales: {
+			x: {
+				display: false,
+				label: false,
+			},
+			y: {
+				display: false,
+			},
 		},
-		y: {
-			display: false,
-		},
-	},
-} as any;
-const costomerSatisfaction: React.FC = () => {
+	} as any;
 	return (
 		<div className={classes.main_chart}>
 			<h5>Customer Satisfaction</h5>
@@ -124,4 +123,4 @@ const costomerSatisfaction: React.FC = () => {
 	);
 };
 
-export default costomerSatisfaction;
+export default CostomerSatisfaction;

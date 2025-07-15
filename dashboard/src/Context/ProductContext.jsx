@@ -25,10 +25,12 @@ export const ProductContextProvider = ({ children }) => {
 	const [orders, setOrders] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
+	const [dashboard, setDashboard] = useState(null);
 
 	useEffect(() => {
 		fetchProducts();
 		fetchOrders();
+		fetchDashboard();
 	}, []);
 
 	const fetchProducts = async () => {
@@ -62,6 +64,21 @@ export const ProductContextProvider = ({ children }) => {
 			setLoading(false);
 		}
 	};
+	const fetchDashboard = async () => {
+		try {
+			const response = await fetch("http://localhost:8080/api/dashboards/getDashboard");
+			if (!response.ok) {
+				throw new Error("Failed to fetch products");
+			}
+			const data = await response.json();
+			setDashboard(data);
+		} catch (err) {
+			console.error("Error fetching products:", err);
+			setError(err.message);
+		} finally {
+			setLoading(false);
+		}
+	};
 
-	return <ProductContext.Provider value={{ products, orders, loading, error }}>{children}</ProductContext.Provider>;
+	return <ProductContext.Provider value={{ products, orders, dashboard, loading, error }}>{children}</ProductContext.Provider>;
 };

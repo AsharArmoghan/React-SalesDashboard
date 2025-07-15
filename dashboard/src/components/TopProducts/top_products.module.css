@@ -1,6 +1,6 @@
 .top_products {
 	width: 32rem;
-	height: 20rem;
+	height: 22rem;
 	border: 1px solid white;
 	border-radius: 10px;
 	background-color: #ffff;
@@ -9,56 +9,69 @@
 		font-family: "Poppins";
 		font-weight: 600;
 		font-size: 20px;
-		margin-top: 15px;
-		margin-left: 26px;
+		padding-top: 15px;
+		padding-left: 26px;
 		letter-spacing: 0.08rem;
 	}
 }
 
 .product_list {
-	position: relative;
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: auto;
 	gap: 10px;
+	height: 19rem;
 }
 .product_title {
 	grid-column: span 1;
 	display: inline-flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
+	span {
+		font-family: "Poppins";
+		font-size: 14px;
+		letter-spacing: 0.08rem;
+	}
 }
 
 .product_name {
-	grid-column: span 1;
-	padding-top: 1rem;
-	display: inline-flex;
+	grid-column: span 2;
+	display: flex;
+	height: 100%;
 	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: center;
+	justify-content: space-around;
+	align-items: left;
+	span {
+		font-family: "Poppins";
+		font-size: 14px;
+		letter-spacing: 0.08rem;
+	}
 }
 
 .product_poularity {
 	grid-column: span 2;
-	display: inline-flex;
+	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	align-items: center;
+	span {
+		font-family: "Poppins";
+		font-size: 14px;
+		letter-spacing: 0.08rem;
+	}
 }
 
 .product_sales {
 	grid-column: span 1;
-	display: inline-flex;
+	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	align-items: center;
 	span {
-		text-align: center;
-		width: 50px;
-		height: 24px;
-		border-radius: 20px;
-		box-shadow: rgba(0, 0, 0, 0.19) 0px 5px 10px, rgba(0, 0, 0, 0.23) 0px 3px 3px;
+		font-family: "Poppins";
+		font-size: 14px;
+		letter-spacing: 0.08rem;
 	}
 }
 
@@ -66,7 +79,7 @@
 .progress {
 	position: relative;
 	height: 15px;
-	width: 100%;
+	width: 95%;
 	background-color: rgb(233, 236, 239);
 	/* border: 1px solid #c5c5c5; */
 	box-shadow: rgba(0, 0, 0, 0.19) 0px 5px 10px, rgba(0, 0, 0, 0.23) 0px 3px 3px;
@@ -74,7 +87,7 @@
 	overflow: hidden;
 }
 
-.progress span {
+.progress > span {
 	position: absolute;
 	width: 100%;
 	height: 100%;

@@ -45,12 +45,11 @@ const Login: React.FC = () => {
 						<div className={classes.title_span}>
 							<span> Welcome to DashBoard </span>
 							<br />
-							<span>Use Email Id</span>
+							<span>Please Use your Employee Email Id</span>
 						</div>
 					</div>
 					<div className={classes.main_form}>
 						<span className={classes.form_label}>Log In</span>
-
 						<form className={classes.form} onSubmit={handleSubmit}>
 							<input
 								type='email'
