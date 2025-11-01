@@ -10,8 +10,8 @@ This is a full-stack web application built using **React ** for the frontend and
 
 ```
 /project-root
-│── /backend    # Node.js + Express API
-│── /frontend   # React
+│── /backend    
+│── /frontend   
 │── package.json
 │── README.md
 │── .gitignore
@@ -23,15 +23,15 @@ This is a full-stack web application built using **React ** for the frontend and
 ```
 /backend
 │── /src
-│   │── /config       # Database & environment config
-│   │── /models       # Database models (Mongoose/SQL)
-│   │── /routes       # API endpoints
-│   │── /controllers  # Business logic for API
-│   │── /middlewares  # Authentication & error handling
-│   │── /services     # External services (Email, JWT, etc.)
-│   │── /utils        # Utility functions
-│   │── app.js        # Express app setup
-│   │── server.js     # Server entry point
+│   │── /config       
+│   │── /models       
+│   │── /routes       
+│   │── /controllers 
+│   │── /middlewares  
+│   │── /services    
+│   │── /utils        
+│   │── app.js        
+│   │── server.js     
 │── package.json
 │── .gitignore
 │── .env
@@ -42,18 +42,18 @@ This is a full-stack web application built using **React ** for the frontend and
 ```
 /frontend
 │── /src
-│   │── /assets       # Static files
-│   │── /components   # Reusable UI components
-│   │── /pages        # Route-based pages
-│   │── /layouts      # Layout components
-│   │── /hooks        # Custom React hooks
-│   │── /context      # React Context API for state
-│   │── /redux        # Redux state management (if used)
-│   │── /services     # API integration (Axios, etc.)
-│   │── /utils        # Helper functions
-│   │── /styles       # Global & component-specific styles
-│   │── main.jsx      # Entry file
-│   │── App.jsx       # Main App component
+│   │── /assets      
+│   │── /components   
+│   │── /pages        
+│   │── /layouts     
+│   │── /hooks        
+│   │── /context      
+│   │── /redux        
+│   │── /services    
+│   │── /utils        
+│   │── /styles       
+│   │── main.jsx    
+│   │── App.jsx       
 │── index.html
 │── package.json
 │── vite.config.js
