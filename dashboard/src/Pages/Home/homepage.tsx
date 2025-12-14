@@ -25,25 +25,25 @@ const Home: React.FC = () => {
 	return (
 		<>
 			<div className={classes.home_main}>
-				<div className={`${classes.topSales} ${classes.large} ${classes.mobile}`}>
+				<div className={`${classes.topSales} ${classes.large}`}>
 					<TopSales />
 				</div>
-				<div className={`${classes.visitorInsights} ${classes.large} ${classes.mobile}`}>
+				<div className={`${classes.visitorInsights} ${classes.large}`}>
 					<VisitorInsights />
 				</div>
-				<div className={`${classes.volumeService} ${classes.small} ${classes.mobile}`}>
+				<div className={`${classes.volumeService} ${classes.small}`}>
 					<VolumeService />
 				</div>
-				<div className={`${classes.customerSatisfaction} ${classes.small} ${classes.mobile}`}>
+				<div className={`${classes.customerSatisfaction} ${classes.small}`}>
 					<CustomerSatisfaction />
 				</div>
-				<div className={`${classes.topProducts} ${classes.small} ${classes.mobile}`}>
+				<div className={`${classes.topProducts} ${classes.small}`}>
 					<TopProducts />
 				</div>
-				<div className={`${classes.targetReality} ${classes.medium} ${classes.mobile}`}>
+				<div className={`${classes.targetReality} ${classes.medium}`}>
 					<TargetvsReality />
 				</div>
-				<div className={`${classes.topRevenue} ${classes.medium} ${classes.mobile}`}>
+				<div className={`${classes.topRevenue} ${classes.medium}`}>
 					<TotalRevenue />
 				</div>
 			</div>

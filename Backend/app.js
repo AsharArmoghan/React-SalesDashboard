@@ -37,21 +37,6 @@ mongoose
 		console.log(error, "Can't connect to DataBase");
 	});
 
-const data = require("../dashboard/src/Asset/data/Dashboard.json");
-
-// const fetchAndSaveProducts = async () => {
-// 	try {
-// 		// const response = await fetch("./Asset/data/Dashboard.json");
-// 		const dashboard = data;
-// 		// const dashboard = await response.json();
-// 		await Dashboard.insertMany(dashboard);
-// 		console.log("Products saved successfully");
-// 	} catch (error) {
-// 		console.error("Error fetching or saving products:", error.message);
-// 	}
-// };
-// fetchAndSaveProducts();
-
 app.listen(process.env.PORT || 8080, () => {
 	console.log("listening on port " + process.env.PORT);
 });

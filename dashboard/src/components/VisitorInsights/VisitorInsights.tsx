@@ -93,7 +93,9 @@ const LineChart: React.FC = () => {
 	return (
 		<div className={classes.main_container}>
 			<h5>Visitor Insights</h5>
-			<Line className={classes.Line} data={chartData} options={option} />
+			<div className={classes.Line}>
+				<Line data={chartData} options={option} />
+			</div>
 		</div>
 	);
 };

@@ -1,10 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import classes from "./TopBar.module.css";
-import logo from "../../Asset/logo";
 import { useAuth } from "@/Context/AuthContext";
 import { NavLink } from "react-router-dom";
 
-const TopBar: React.FC = () => {
+interface TopBarProps {
+	onToggleNavbar: () => void;
+}
+
+const TopBar: React.FC<TopBarProps> = ({ onToggleNavbar }) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 	const { logOut } = useAuth();
@@ -25,29 +28,37 @@ const TopBar: React.FC = () => {
 	}, [menuOpen]);
 
 	return (
-		<nav className='bg-white shadow'>
-			<div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
-				<div className='relative flex h-20 items-center justify-between'>
-					<div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-start'>
-						<div className='flex shrink-0 items-center'>
-							<p className='text-4xl font-semibold leading-tight text-gray-800 font-[poppins]'>Dashboard</p>
+		<nav className={`${classes.main_container} bg-white shadow`}>
+			<div className={`${classes.container} mx-auto w-full px-2 sm:px-6 lg:px-8`}>
+				<div className={`${classes.header_content} relative flex h-20 w-full items-center justify-between`}>
+					<div className={`${classes.logo_section} flex flex-1 items-center`}>
+						{/* Mobile menu toggle button */}
+						<button
+							onClick={onToggleNavbar}
+							className={`${classes.mobile_menu_toggle} md:hidden -ml-2 inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:outline-none`}
+							aria-label='Toggle navigation'
+						>
+							<svg className='h-6 w-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+								<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 6h16M4 12h16M4 18h16' />
+							</svg>
+						</button>
+						<div className={`${classes.logo}`}>
+							<p className='text-3xl md:text-4xl font-semibold text-gray-800 font-[poppins] truncate'>Dashboard</p>
 						</div>
 					</div>
-					<div className='absolute inset-y-0 right-0  flex flex-row  justify-end  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
+					<div className={`${classes.actions_section} flex items-center justify-end gap-2 md:gap-4`}>
 						<button
 							type='button'
-							className='relative left-10 rounded-full bg-white p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden'
+							className={`${classes.notification_btn} rounded-full bg-white p-1 text-gray-400 hover:text-gray-600 focus:ring-2 focus:ring-white focus:ring-offset-2`}
 						>
-							<span className='absolute -inset-1.5'></span>
 							<span className='sr-only'>View notifications</span>
 							<svg
-								className='size-9'
+								className='size-6 md:size-9'
 								fill='yellow'
 								viewBox='0 0 24 24'
 								strokeWidth='1.5'
 								stroke='currentColor'
 								aria-hidden='true'
-								data-slot='icon'
 							>
 								<path
 									strokeLinecap='round'
@@ -56,58 +67,52 @@ const TopBar: React.FC = () => {
 								/>
 							</svg>
 						</button>
-						<div className='relative left-12 ml-5 ' ref={menuRef}>
+						<div className={`${classes.profile_menu} relative`} ref={menuRef}>
 							<div>
 								<button
 									type='button'
-									className='relative flex rounded-full bg-gray-800 text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800'
+									className={`${classes.profile_btn} relative flex rounded-full bg-gray-800 text-sm focus:outline-none`}
 									id='user-menu-button'
 									aria-expanded={menuOpen}
 									aria-haspopup='true'
 									onClick={() => setMenuOpen(open => !open)}
 								>
-									<span className='absolute -inset-1.5'></span>
 									<span className='sr-only'>Open user menu</span>
 									<img
-										className='size-10 rounded-full'
+										className={`${classes.profile_image} size-8 md:size-10 rounded-full`}
 										src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-										alt=''
+										alt='User profile'
 									/>
 								</button>
 							</div>
 							{menuOpen && (
 								<div
-									className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-hidden no-underline'
+									className={`${classes.dropdown_menu} absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5`}
 									role='menu'
 									aria-orientation='vertical'
 									aria-labelledby='user-menu-button'
 									tabIndex={-1}
 								>
-									<a
-										href='#'
-										className='block px-4 py-2 text-base text-gray-700 no-underline'
+									<button
+										className='block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100'
 										role='menuitem'
 										tabIndex={-1}
-										id='user-menu-item-0'
 									>
 										Your Profile
-									</a>
-									<a
-										href='#'
-										className='block px-4 py-2 text-base text-gray-700 no-underline'
+									</button>
+									<button
+										className='block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100'
 										role='menuitem'
 										tabIndex={-1}
-										id='user-menu-item-1'
 									>
 										Settings
-									</a>
+									</button>
 									<NavLink
 										to={"/login"}
 										onClick={logOut}
-										className='block px-4 py-2 text-base text-gray-700 no-underline'
+										className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 no-underline'
 										role='menuitem'
 										tabIndex={-1}
-										id='user-menu-item-2'
 									>
 										Sign out
 									</NavLink>

@@ -51,7 +51,7 @@ const TopProducts: React.FC = () => {
 								border: `1.5px solid ${getColorByIndex(index)}`,
 								backgroundColor: `${getColorByIndex(index, 0.1)}`,
 								color: getColorByIndex(index),
-								borderRadius: "15px",
+								borderRadius: "30px",
 							}}
 						>
 							<span>{order.rating}</span>

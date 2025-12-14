@@ -5,6 +5,5 @@ const requireAuth = require("../Middleware/requireAuth");
 // const requireAuth = require("../Middleware/requireAuth");
 // router.use(requireAuth);
 router.get("/getDashboard", dashboard.getDashboard);
-// router.post("/saveDashboard", dashboard.saveDashboard);
 
 module.exports = router;
