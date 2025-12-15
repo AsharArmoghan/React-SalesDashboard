@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./AddProducts.css";
 
 interface product {
@@ -28,60 +28,49 @@ const AddProducts: React.FC = () => {
 		e.preventDefault();
 
 		if (!formData.name || !formData.quantityAvailable || !formData.price) {
-			<p className="bg-danger">please enter fields</p>;
+			<p className='bg-danger'>please enter fields</p>;
 		}
 	};
 
 	return (
-		<div className="container container-md bg-dark">
+		<div className='container container-md bg-dark'>
 			<h4>Add New Product</h4>
-			<div className="form">
-				<form
-					className="form-group"
-					onSubmit={handleSubmit}>
-					<label className="label">Product Name :</label>
-					<input
-						type="text"
-						className="form-control"
-						name="name"
-						placeholder="name"
-						value={formData.name}
-						onChange={handleChange}
-					/>
+			<div className='form'>
+				<form className='form-group' onSubmit={handleSubmit}>
+					<label className='label'>Product Name :</label>
+					<input type='text' className='form-control' name='name' placeholder='name' value={formData.name} onChange={handleChange} />
 					<br />
-					<label className="label">Product Description :</label>
+					<label className='label'>Product Description :</label>
 					<input
-						type="text"
-						className="form-control"
-						name="description"
-						placeholder="Description"
+						type='text'
+						className='form-control'
+						name='description'
+						placeholder='Description'
 						onChange={handleChange}
 						value={formData.description}
 					/>
 					<br />
-					<label className="label">Price :</label>
+					<label className='label'>Price :</label>
 					<input
-						type="text"
-						className="form-control"
-						name="price"
-						placeholder="Dollar"
+						type='text'
+						className='form-control'
+						name='price'
+						placeholder='Dollar'
 						onChange={handleChange}
 						value={formData.price}
 					/>
 					<br />
-					<label className="label">Quantity Available :</label>
+					<label className='label'>Quantity Available :</label>
 					<input
-						type="text"
-						className="form-control"
-						name="quantityAvailable"
-						placeholder="Items left"
+						type='text'
+						className='form-control'
+						name='quantityAvailable'
+						placeholder='Items left'
 						onChange={handleChange}
 						value={formData.quantityAvailable}
 					/>
 					<br />
-					<button
-						type="submit"
-						className="btn btn-primary">
+					<button type='submit' className='btn btn-primary'>
 						Upload
 					</button>
 				</form>

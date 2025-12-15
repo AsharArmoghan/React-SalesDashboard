@@ -1,160 +1,229 @@
-import React, { useEffect } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import classes from "./navbar.module.css";
 import { NavLink } from "react-router-dom";
 import logo from "@/Asset/logo";
 import { useAuth } from "@/Context/AuthContext";
+import { motion } from "framer-motion";
+import gsap from "gsap";
 
 interface NavBarProps {
-	isOpen: boolean;
-	onClose: () => void;
+	mobileNavOpen?: boolean;
+	setMobileNavOpen?: (open: boolean) => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ isOpen, onClose }) => {
+const NavBar: React.FC<NavBarProps> = ({ mobileNavOpen, setMobileNavOpen }) => {
 	const { logOut } = useAuth();
+	const navRef = useRef<HTMLElement>(null);
+	const listRef = useRef<HTMLUListElement>(null);
+
+	useLayoutEffect(() => {
+		const ctx = gsap.context(() => {
+			gsap.fromTo(navRef.current, { x: -100, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" });
+
+			gsap.fromTo(
+				".nav-item-animate",
+				{ opacity: 0, x: -20 },
+				{ opacity: 1, x: 0, duration: 0.5, stagger: 0.1, delay: 0.3, ease: "back.out(1.7)" }
+			);
+		}, navRef);
+
+		return () => ctx.revert();
+	}, []);
+
+	const handleLinkClick = () => {
+		if (setMobileNavOpen) setMobileNavOpen(false);
+	};
 
 	const handleLogout = () => {
 		logOut();
+		handleLinkClick();
 	};
 
-	// Close navbar when clicking outside on mobile
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			const navbar = document.getElementById("navbar");
-			const toggleBtn = document.querySelector('[aria-label="Toggle navigation"]');
-			if (isOpen && navbar && !navbar.contains(event.target as Node)) {
-				// Check if click is not on the toggle button
-				if (!toggleBtn?.contains(event.target as Node)) {
-					onClose();
-				}
-			}
-		};
-
-		if (isOpen) {
-			document.addEventListener("mousedown", handleClickOutside);
-		}
-
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
-		};
-	}, [isOpen, onClose]);
+	const navItemVariants = {
+		hover: { scale: 1.05, transition: { type: "spring", stiffness: 400, damping: 10 } as const },
+		tap: { scale: 0.95 },
+	};
 
 	return (
 		<>
-			{/* Mobile overlay backdrop */}
-			{isOpen && <div className='fixed inset-0 bg-black bg-opacity-50 md:hidden z-20' onClick={onClose} aria-hidden='true' />}
+			{/* Mobile Backdrop */}
+			{mobileNavOpen && (
+				<div className='fixed inset-0 bg-black/50 z-40 md:hidden' onClick={() => setMobileNavOpen?.(false)} aria-hidden='true' />
+			)}
 
 			<nav
-				className={`${classes.navbar} ${
-					isOpen ? classes.expanded : ""
-				} fixed md:static left-0 top-0 h-screen md:h-full w-20 md:w-36 lg:w-36 bg-white z-30`}
+				ref={navRef}
+				className={`${classes.navbar} ${mobileNavOpen ? classes.open : ""}
+				fixed md:static left-0 top-0 h-screen md:h-full
+			  w-36
+				bg-slate-50 dark:bg-slate-900 border-r border-slate-400 dark:border-slate-500 z-50
+				transition-colors duration-300
+			`}
 				id='navbar'
 			>
-				{/* Mobile close button */}
-				<button
-					onClick={onClose}
-					className='md:hidden absolute top-4 right-4 p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition'
-					aria-label='Close navigation'
-				>
-					<svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-						<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
-					</svg>
-				</button>
+				{/* Mobile Close Button */}
+				<div className='md:hidden flex justify-end p-4'>
+					<button
+						onClick={() => setMobileNavOpen?.(false)}
+						className='text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200'
+					>
+						<span className='sr-only'>Close menu</span>
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							fill='none'
+							viewBox='0 0 24 24'
+							strokeWidth={1.5}
+							stroke='currentColor'
+							className='size-6'
+						>
+							<path strokeLinecap='round' strokeLinejoin='round' d='M6 18 18 6M6 6l12 12' />
+						</svg>
+					</button>
+				</div>
 
 				<ul
+					ref={listRef}
 					className={`${classes.navbar_nav} w-full flex flex-col justify-center items-center mt-5 md:justify-center py-6 md:pt-0 gap-2 md:gap-4`}
 				>
-					<li className={`${classes.nav_items} w-full px-2`}>
+					<motion.li
+						variants={navItemVariants}
+						whileHover='hover'
+						whileTap='tap'
+						className={`${classes.nav_items} w-full px-2 nav-item-animate`}
+					>
 						<NavLink
 							to={"/home"}
+							onClick={handleLinkClick}
 							className={({ isActive }) =>
 								`${classes.nav_link} ${
 									isActive ? classes.activeNavLink : ""
-								} w-full py-3 rounded-lg transition-all duration-200`
+								} w-full py-3 rounded-full transition-all duration-200`
 							}
-							onClick={onClose}
 						>
-							<img src={logo.graphLogo} alt='dashboard' className={`${classes.nav_icon} w-7 h-7 md:w-9 md:h-9`} />
-							<p className={`${classes.nav_text} hidden md:block text-xs lg:text-sm mt-2`}>Dashboard</p>
+							<img src={logo.graphLogo} alt='dashboard' className={`${classes.nav_icon} w-8 h-8 `} />
+							<div
+								className={`${classes.nav_text} hidden md:block text-base text-stone-800 antialiased font-normal tracking-tighter mt-2 dark:text-stone-200`}
+							>
+								Dashboard
+							</div>
 						</NavLink>
-					</li>
+					</motion.li>
 
-					<li className={`${classes.nav_items} w-full px-2`}>
+					<motion.li
+						variants={navItemVariants}
+						whileHover='hover'
+						whileTap='tap'
+						className={`${classes.nav_items} w-full px-2 nav-item-animate`}
+					>
 						<NavLink
 							to={"/board"}
+							onClick={handleLinkClick}
 							className={({ isActive }) =>
 								`${classes.nav_link} ${
 									isActive ? classes.activeNavLink : ""
 								} w-full py-3 rounded-lg transition-all duration-200`
 							}
-							onClick={onClose}
 						>
-							<img src={logo.leaderIcon} alt='leaderboard' className={`${classes.nav_icon} w-7 h-7 md:w-9 md:h-9`} />
-							<p className={`${classes.nav_text} hidden md:block text-xs lg:text-sm mt-2`}>LeaderBoard</p>
+							<img src={logo.leaderIcon} alt='leaderboard' className={`${classes.nav_icon} w-8 h-8`} />
+							<div
+								className={`${classes.nav_text} hidden md:block text-base text-stone-800 antialiased font-normal tracking-tighter mt-2 dark:text-stone-200`}
+							>
+								LeaderBoard
+							</div>
 						</NavLink>
-					</li>
+					</motion.li>
 
-					<li className={`${classes.nav_items} w-full px-2`}>
+					<motion.li
+						variants={navItemVariants}
+						whileHover='hover'
+						whileTap='tap'
+						className={`${classes.nav_items} w-full px-2 nav-item-animate`}
+					>
 						<NavLink
 							to={"/orders"}
+							onClick={handleLinkClick}
 							className={({ isActive }) =>
 								`${classes.nav_link} ${
 									isActive ? classes.activeNavLink : ""
 								} w-full py-3 rounded-lg transition-all duration-200`
 							}
-							onClick={onClose}
 						>
-							<img src={logo.cartLogo} alt='orders' className={`${classes.nav_icon} w-7 h-7 md:w-9 md:h-9`} />
-							<p className={`${classes.nav_text} hidden md:block text-xs lg:text-sm mt-2`}>Orders</p>
+							<img src={logo.cartLogo} alt='orders' className={`${classes.nav_icon} w-8 h-8 `} />
+							<div
+								className={`${classes.nav_text} hidden md:block text-base text-stone-800 antialiased font-normal tracking-tighter mt-2 dark:text-stone-200`}
+							>
+								Orders
+							</div>
 						</NavLink>
-					</li>
+					</motion.li>
 
-					<li className={`${classes.nav_items} w-full px-2`}>
+					<motion.li
+						variants={navItemVariants}
+						whileHover='hover'
+						whileTap='tap'
+						className={`${classes.nav_items} w-full px-2 nav-item-animate`}
+					>
 						<NavLink
 							to={"/products"}
+							onClick={handleLinkClick}
 							className={({ isActive }) =>
 								`${classes.nav_link} ${
 									isActive ? classes.activeNavLink : ""
 								} w-full py-3 rounded-lg transition-all duration-200`
 							}
-							onClick={onClose}
 						>
-							<img src={logo.productLogo} alt='products' className={`${classes.nav_icon} w-7 h-7 md:w-9 md:h-9`} />
-							<p className={`${classes.nav_text} hidden md:block text-xs lg:text-sm mt-2`}>Products</p>
+							<img src={logo.productLogo} alt='products' className={`${classes.nav_icon} w-8 h-8 `} />
+							<div
+								className={`${classes.nav_text} hidden md:block text-base text-stone-800 antialiased font-normal tracking-tighter mt-2 dark:text-stone-200`}
+							>
+								Products
+							</div>
 						</NavLink>
-					</li>
+					</motion.li>
 
-					<li className={`${classes.nav_items} w-full px-2`}>
+					<motion.li
+						variants={navItemVariants}
+						whileHover='hover'
+						whileTap='tap'
+						className={`${classes.nav_items} w-full px-2 nav-item-animate`}
+					>
 						<NavLink
 							to={"/sales"}
+							onClick={handleLinkClick}
 							className={({ isActive }) =>
 								`${classes.nav_link} ${
 									isActive ? classes.activeNavLink : ""
 								} w-full py-3 rounded-lg transition-all duration-200`
 							}
-							onClick={onClose}
 						>
-							<img src={logo.salesIcon} alt='sales' className={`${classes.nav_icon} w-7 h-7 md:w-9 md:h-9`} />
-							<p className={`${classes.nav_text} hidden md:block text-xs lg:text-sm mt-2`}>Sales</p>
+							<img src={logo.salesIcon} alt='sales' className={`${classes.nav_icon} w-8 h-8 `} />
+							<div
+								className={`${classes.nav_text} hidden md:block text-base text-stone-800 antialiased font-normal tracking-tighter mt-2 dark:text-stone-200`}
+							>
+								Sales
+							</div>
 						</NavLink>
-					</li>
+					</motion.li>
 
-					<li className={`${classes.nav_items} w-full px-2 mt-auto mb-4`}>
+					<motion.li
+						variants={navItemVariants}
+						whileHover='hover'
+						whileTap='tap'
+						className={`${classes.nav_items} w-full px-2 mt-auto mb-4 nav-item-animate`}
+					>
 						<NavLink
 							to={"/login"}
 							onClick={handleLogout}
 							className={`${classes.nav_link} ${classes.logout_btn} w-full py-3 rounded-lg transition-all duration-200`}
 						>
-							<svg className='w-7 h-7 md:w-9 md:h-9' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth={2}
-									d='M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1'
-								/>
-							</svg>
-							<p className={`${classes.nav_text} hidden md:block text-xs lg:text-sm mt-2`}>Logout</p>
+							<img src={logo.signoutIcon} alt='logout' className={`${classes.nav_icon} w-8 h-8 `} />
+							<div
+								className={`${classes.nav_text} hidden md:block text-base text-stone-800 antialiased font-normal tracking-tighter mt-2 dark:text-stone-200`}
+							>
+								Logout
+							</div>
 						</NavLink>
-					</li>
+					</motion.li>
 				</ul>
 			</nav>
 		</>

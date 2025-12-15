@@ -11,7 +11,8 @@ exports.getAllProducts = async (req, res, next) => {
 
 exports.getProduct = async (req, res, next) => {
 	try {
-		Product.findById(req.param.Id).then(result => {
+		const id = req.params.id || req.params.Id; // Handle case sensitivity if route param varies
+		Product.findOne({ id: id }).then(result => {
 			if (!result) res.status(404).json({ message: "Product Not Found!" });
 			res.status(200).json(result);
 			console.log(result);
@@ -19,8 +20,6 @@ exports.getProduct = async (req, res, next) => {
 	} catch (error) {
 		res.status(500).json({ error: "Internal Server Error" });
 	}
-	// let product = { name: "Mobile", description: "iphone", price: "80,000", quantityAvailable: 100 };
-	// res.status(200).json(product);
 };
 
 exports.addProduct = (req, res, next) => {

@@ -1,26 +1,16 @@
 .top_products {
-	width: 28rem;
-	height: 23rem;
-	border: 1px solid white;
-	border-radius: 10px;
-	background-color: #ffff;
+	width: 100%;
+	max-width: 36rem;
+	max-height: 23rem;
+	height: 100%;
 	z-index: 2;
-	h5 {
-		font-family: "Poppins";
-		font-weight: 600;
-		font-size: 20px;
-		padding-top: 15px;
-		padding-left: 26px;
-		letter-spacing: 0.08rem;
-	}
 }
 
 .product_list {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: auto;
-	gap: 10px;
-	height: 19rem;
+	height: calc(23rem - 3rem);
 }
 .product_title {
 	grid-column: span 1;
@@ -28,11 +18,6 @@
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	span {
-		font-family: "Poppins";
-		font-size: 14px;
-		letter-spacing: 0.08rem;
-	}
 }
 
 .product_name {
@@ -42,11 +27,6 @@
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: left;
-	span {
-		font-family: "Poppins";
-		font-size: 14px;
-		letter-spacing: 0.08rem;
-	}
 }
 
 .product_poularity {
@@ -55,11 +35,6 @@
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	span {
-		font-family: "Poppins";
-		font-size: 14px;
-		letter-spacing: 0.08rem;
-	}
 }
 
 .product_sales {
@@ -68,20 +43,12 @@
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	span {
-		font-family: "Poppins";
-		font-size: 14px;
-		letter-spacing: 0.08rem;
-	}
 }
 
-/* progressBar component css below */
 .progress {
 	position: relative;
 	height: 15px;
 	width: 95%;
-	background-color: rgb(233, 236, 239);
-	/* border: 1px solid #c5c5c5; */
 	box-shadow: rgba(0, 0, 0, 0.19) 0px 5px 10px, rgba(0, 0, 0, 0.23) 0px 3px 3px;
 	border-radius: 15px;
 	overflow: hidden;
@@ -91,10 +58,6 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	font-family: "Popins";
-	font-size: 10px;
-	font-weight: 300;
-	line-height: 120;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -112,5 +75,12 @@
 	.top_products {
 		min-height: 15rem;
 		width: 100%;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.product_list {
+		min-width: 600px; /* Force minimum width to trigger scroll */
+		padding-bottom: 0.5rem;
 	}
 }

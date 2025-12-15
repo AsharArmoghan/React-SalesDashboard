@@ -1,38 +1,22 @@
 .chart {
 	width: 100%;
-	min-height: 23rem;
-	border: 1px solid white;
-	border-radius: 10px;
-	background-color: #ffff;
-	box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.5);
+	max-width: 36rem;
+	min-height: 21rem;
+	height: 19rem;
 	z-index: 1;
 	box-sizing: border-box;
 }
 
-.chart h5 {
-	font-family: "Poppins";
-	font-weight: 600;
-	line-height: 32px;
-	font-size: 20px;
-	margin-top: 15px;
-	margin-left: 26px;
-}
-
-.barChart {
-	padding-bottom: 5px;
-	margin-left: 14px;
-	margin-right: 14px;
-	width: 100%;
-	height: 100%;
-}
-
 @media (max-width: 768px) {
 	.chart {
-		min-height: 15rem;
+		min-height: auto;
+		height: auto;
+		padding-bottom: 1rem;
 	}
 
 	.barChart {
-		min-height: 12rem;
+		min-height: 250px;
+		height: 250px;
 		width: 100%;
 	}
 }

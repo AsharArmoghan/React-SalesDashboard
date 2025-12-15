@@ -3,14 +3,20 @@ import classes from "./VisitorInsights.module.css";
 import { Line } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import { useProductContext } from "@/Hooks/useProducts";
+import { useTheme } from "@/Context/ThemeContext";
+
 Chart.register(...registerables);
 
 const LineChart: React.FC = () => {
 	const { dashboard } = useProductContext();
+	const { theme } = useTheme();
+
+	if (!dashboard) return null;
 	const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-	const monthMap = {};
+	const monthMap: Record<number, { loyal: number; new: number; unique: number }> = {};
 
 	dashboard.forEach(entry => {
+		if (!entry.createdAt) return;
 		const monthIndex = new Date(entry.createdAt).getMonth();
 		if (!monthMap[monthIndex]) {
 			monthMap[monthIndex] = {
@@ -28,9 +34,9 @@ const LineChart: React.FC = () => {
 		.map(Number)
 		.sort((a, b) => a - b)
 		.map(i => monthNames[i]);
-	const loyalData = [];
-	const newData = [];
-	const uniqueData = [];
+	const loyalData: number[] = [];
+	const newData: number[] = [];
+	const uniqueData: number[] = [];
 
 	Object.keys(monthMap)
 		.map(Number)
@@ -48,25 +54,29 @@ const LineChart: React.FC = () => {
 				label: "Loyal Customer",
 				data: loyalData,
 				fill: false,
-				borderColor: "rgba(167, 0, 255, 1)",
+				borderColor: "oklch(54.1% 0.281 293.009)",
 				tension: 0.4,
 			},
 			{
 				label: "New Customer",
 				data: newData,
 				fill: false,
-				borderColor: "rgba(239, 68, 68, 1)",
+				borderColor: "oklch(57.7% 0.245 27.325)",
 				tension: 0.4,
 			},
 			{
 				label: "Unique Customer",
 				data: uniqueData,
 				fill: false,
-				borderColor: "rgba(60, 216, 86, 1)",
+				borderColor: "oklch(59.6% 0.145 163.225)",
 				tension: 0.4,
 			},
 		],
 	};
+
+	const gridColor = theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)";
+	const textColor = theme === "dark" ? "#e5e7eb" : "#374151";
+
 	const option = {
 		responsive: true,
 		maintainAspectRatio: true,
@@ -75,25 +85,45 @@ const LineChart: React.FC = () => {
 				display: true,
 				grid: {
 					display: true,
+					color: gridColor,
+				},
+				ticks: {
+					color: textColor,
 				},
 			},
 			y: {
 				display: true,
 				suggestedMin: 0,
 				suggestedMax: 400,
+				grid: {
+					color: gridColor,
+				},
+				ticks: {
+					color: textColor,
+				},
 			},
 		},
 		plugins: {
 			legend: {
 				display: true,
+				labels: {
+					color: textColor,
+					font: {
+						family: "Poppins",
+					},
+				},
 			},
 		},
 	};
 
 	return (
-		<div className={classes.main_container}>
-			<h5>Visitor Insights</h5>
-			<div className={classes.Line}>
+		<div className={`${classes.main_container} bg-zinc-50 dark:bg-zinc-900 rounded-xl shadow-md transition-colors duration-300`}>
+			<h5 className='text-2xl pt-2 pl-4 font-semibold  tracking-wider leading-10 text-text-main-light dark:text-text-main-dark font-poppins'>
+				Visitor Insights
+			</h5>
+			<div
+				className={`${classes.Line} text-xl font-poppins font-semibold tracking-wider leading-10 text-text-main-light dark:text-text-main-dark`}
+			>
 				<Line data={chartData} options={option} />
 			</div>
 		</div>

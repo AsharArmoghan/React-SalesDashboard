@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./top_products.module.css";
 
 interface valueProp {
@@ -11,9 +11,6 @@ function ProgressBar(props: valueProp) {
 	useEffect(() => {
 		setPercent(Math.min(Math.max(props.value, 0), 100) * 20);
 	}, [props.value]);
-
-	// const [value, setValue] = useState(0);
-
 	return (
 		<div className={classes.progress}>
 			<span
@@ -24,7 +21,7 @@ function ProgressBar(props: valueProp) {
 				{percent.toFixed(0)}%
 			</span>
 			<div
-				className={classes.progressBar}
+				className={`${classes.progressBar} text-xs font-medium text-text-main-light dark:text-text-main-dark`}
 				style={{
 					width: `${percent}%`,
 					backgroundColor: props.color,

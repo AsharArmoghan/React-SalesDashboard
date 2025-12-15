@@ -11,7 +11,8 @@ exports.getAllOrders = async (req, res, next) => {
 
 exports.getOrder = async (req, res, next) => {
 	try {
-		Order.findById(req.param.Id).then(result => {
+		const id = req.params.id || req.params.Id;
+		Order.findOne({ id: id }).then(result => {
 			if (!result) res.status(404).json({ message: "Order Not Found!" });
 			res.status(200).json(result);
 		});

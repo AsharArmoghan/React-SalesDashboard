@@ -3,8 +3,7 @@
 	top: 0;
 	left: 0;
 	width: 100%;
-	background-color: #ffffff;
-	z-index: 10;
+	z-index: 20;
 	box-sizing: border-box;
 }
 
@@ -34,27 +33,6 @@
 	gap: 0.5rem;
 }
 
-.mobile_menu_toggle {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 0.5rem;
-	margin-left: -0.5rem;
-	border-radius: 0.375rem;
-	color: #4b5563;
-	transition: all 0.2s ease;
-}
-
-.mobile_menu_toggle:hover {
-	background-color: #f3f4f6;
-	color: #111827;
-}
-
-.mobile_menu_toggle svg {
-	width: 1.5rem;
-	height: 1.5rem;
-}
-
 .logo {
 	display: flex;
 	align-items: center;
@@ -81,7 +59,33 @@
 	justify-content: center;
 	padding: 0.5rem;
 	border-radius: 9999px;
+	border-radius: 9999px;
 	transition: all 0.2s ease;
+}
+
+.refresh_btn {
+	transition: all 0.2s ease;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.refresh_btn:hover {
+	background-color: #f3f4f6;
+	color: #4b5563;
+}
+
+.spin {
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .notification_btn:hover {
@@ -114,6 +118,10 @@
 
 .dropdown_menu {
 	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
 	min-width: 12rem;
 	padding: 0.5rem 0;
 	background: #ffffff;

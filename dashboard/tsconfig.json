@@ -1,24 +1,30 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "strict": false,
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "preserve",
-    "baseUrl": "src", // Set the base URL for your project
-    "paths": {
-      "@/*": ["*"] // Create an alias for the src directory
-    }
-  },
-  "include": ["src"]
+	"compilerOptions": {
+		"target": "ES2020",
+		"useDefineForClassFields": true,
+		"lib": ["ES2020", "DOM", "DOM.Iterable"],
+		"module": "ESNext",
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": false,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"moduleResolution": "bundler",
+		"jsx": "react-jsx",
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"],
+			"@/Components/*": ["src/components/*"],
+			"@/Context/*": ["src/Context/*"],
+			"@/Hooks/*": ["src/Hooks/*"],
+			"@/Pages/*": ["src/Pages/*"],
+			"@/Router/*": ["src/Router/*"],
+			"@/animations/*": ["src/animations/*"],
+			"@/utils/*": ["src/utils/*"]
+		}
+	},
+	"include": ["src"],
+	"exclude": ["node_modules", "dist"]
 }

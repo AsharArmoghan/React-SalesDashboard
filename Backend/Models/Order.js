@@ -5,13 +5,11 @@ const orderSchema = new mongoose.Schema(
 	{
 		id: {
 			type: Number,
-			required: true,
 			unique: true,
 		},
 		products: [
 			{
 				type: ProductSchema,
-				required: true,
 			},
 		],
 		totalProducts: {
@@ -27,7 +25,10 @@ const orderSchema = new mongoose.Schema(
 			type: Number,
 		},
 		userId: {
-			type: Number,
+			type: String,
+		},
+		title: {
+			type: String,
 		},
 	},
 	{ timestamps: true }

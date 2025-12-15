@@ -1,11 +1,11 @@
-import Graphlogo from "./Graphlogo.svg";
-import cartLogo from "./cart_Icon.svg";
+import Graphlogo from "./icon_dashboard.svg";
+import cartLogo from "./icon_orders.svg";
 import msgLogo from "./message_icon.svg";
-import productLogo from "./product_icon.svg";
-import salesIcon from "./sales_icon.svg";
+import productLogo from "./icon_products.svg";
+import salesIcon from "./icon_sales.svg";
 import settingIcon from "./setting_icon.svg";
-import signoutIcon from "./signout_icon.svg";
-import leaderIcon from "./leaderboard_icon.svg";
+import signoutIcon from "./icon_logout.svg";
+import leaderIcon from "./icon_leaderboard.svg";
 import searchIcon from "./magnifierIcon.svg";
 import langIcon from "./langIcon.svg";
 import dropdownIcon from "./dropDownIcon.svg";
@@ -18,6 +18,9 @@ import realSales from "./realSales.svg";
 import rectGreen from "./RectangleCopyGreen.svg";
 import rectBlue from "./RectangleCopyBlue.svg";
 import notFound from "./notfound.png";
+
+import sunIcon from "./icon_sun.svg";
+import moonIcon from "./icon_moon.svg";
 
 const logos = {
 	graphLogo: Graphlogo,
@@ -40,6 +43,8 @@ const logos = {
 	rectGreen: rectGreen,
 	rectBlue: rectBlue,
 	notFound: notFound,
+	sunIcon: sunIcon,
+	moonIcon: moonIcon,
 };
 
 export default logos;

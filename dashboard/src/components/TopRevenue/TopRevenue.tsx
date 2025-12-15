@@ -3,15 +3,17 @@ import classes from "./TopRevenue.module.css";
 import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import { useProductContext } from "@/Hooks/useProducts";
+import { useTheme } from "@/Context/ThemeContext";
+
 Chart.register(...registerables);
 
 const TotalRevenue: React.FC = () => {
 	const { dashboard } = useProductContext();
+	const { theme } = useTheme();
+	if (!dashboard) return null;
 	const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-
-	// Initialize maps for each day
-	const onlineMap = {};
-	const offlineMap = {};
+	const onlineMap: Record<string, number> = {};
+	const offlineMap: Record<string, number> = {};
 	days.forEach(day => {
 		onlineMap[day] = 0;
 		offlineMap[day] = 0;
@@ -55,17 +57,36 @@ const TotalRevenue: React.FC = () => {
 			},
 		],
 	};
+
+	const gridColor = theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)";
+	const textColor = theme === "dark" ? "#9ca3af" : "#96a5b8";
+	const legendColor = theme === "dark" ? "#e5e7eb" : "#000";
+
 	const options = {
 		responsive: true,
-		maintainAspectRatio: true,
+		maintainAspectRatio: false,
 		scales: {
 			x: {
 				display: true,
 				ticks: {
 					maxTicksLimit: 5,
+					color: textColor,
 				},
 				grid: {
 					display: false,
+				},
+			},
+			y: {
+				display: true,
+				min: 5000,
+				max: 35000,
+				ticks: {
+					maxTicksLimit: 5,
+					stepSize: 10000,
+					color: textColor,
+				},
+				grid: {
+					color: gridColor,
 				},
 			},
 		},
@@ -77,18 +98,23 @@ const TotalRevenue: React.FC = () => {
 				labels: {
 					usePointStyle: true,
 					pointStyle: "circle",
-					color: "#000",
+					color: legendColor,
 					boxWidth: 8,
 					padding: 10,
+					font: {
+						family: "Poppins",
+					},
 				},
 			},
 		} as any,
 	};
 
 	return (
-		<div className={classes.chart}>
-			<h5>Total Revenue</h5>
-			<Bar className={classes.barChart} data={data} options={options} />
+		<div className={`${classes.chart} bg-zinc-50 dark:bg-zinc-900 rounded-xl shadow-md transition-colors duration-300`}>
+			<h2 className='text-2xl pt-2 pl-4 font-semibold text-text-main-light dark:text-text-main-dark font-poppins'>Total Revenue</h2>
+			<div className=' h-[18rem] pb-2'>
+				<Bar className={`${classes.barChart}`} data={data} options={options} />
+			</div>
 		</div>
 	);
 };

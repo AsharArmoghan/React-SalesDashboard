@@ -10,6 +10,7 @@ import TotalRevenue from "../../components/TopRevenue/TopRevenue";
 import { useAuth } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 // import SaleMap from "@/components/SalesMappingByCountry/SaleMap";
+import { HeroSection } from "../../components/HeroSection";
 
 const Home: React.FC = () => {
 	const navigate = useNavigate();
@@ -24,7 +25,10 @@ const Home: React.FC = () => {
 
 	return (
 		<>
-			<div className={classes.home_main}>
+			<div className={`${classes.home_main} bg-surface-light dark:bg-surface-dark `}>
+				<div className='w-full col-span-full mb-8'>
+					<HeroSection />
+				</div>
 				<div className={`${classes.topSales} ${classes.large}`}>
 					<TopSales />
 				</div>

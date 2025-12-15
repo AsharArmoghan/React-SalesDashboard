@@ -9,7 +9,8 @@
 	top: 0;
 	left: 0;
 	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
+	overflow-x: hidden;
 	--black-color: #1d1e2c;
 	--blue-color: #5d5fef;
 	--blue-bar: #0095ff;

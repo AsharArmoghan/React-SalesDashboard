@@ -1,16 +1,13 @@
 .main_container {
 	width: 100%;
-	max-width: 100%;
-	min-height: 23rem;
+	max-width: 40rem;
+	max-height: 24rem;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
-	border-radius: 20px;
-	border: 1px solid #f8f9fa;
-	background: #fff;
 	padding: 1rem;
 	overflow: hidden;
-	box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.5);
 	z-index: 1;
 	box-sizing: border-box;
 }
@@ -20,30 +17,18 @@
 	flex-direction: column;
 	justify-content: center;
 	width: 100%;
+	height: 8rem;
 	padding: 3.5rem 0.5rem;
 	margin: 0 0 0.5rem 0;
-	font-family: "Poppins";
-	font-weight: 600;
-	line-height: 1.2;
-	letter-spacing: 0.03rem;
-	font-size: 18px;
-}
-
-.text p {
-	font-family: "Poppins";
-	font-weight: 400;
-	line-height: 1.2;
-	letter-spacing: 0.02rem;
-	font-size: 14px;
-	margin: 0.25rem 0 0 0;
 }
 
 .container {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	width: 100%;
-	padding: 0 0.25rem;
+	height: 12rem;
+	padding: 0.5rem 0.25rem;
 	align-items: center;
 	gap: 0.75rem;
 	flex-wrap: wrap;
@@ -57,26 +42,12 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	font-family: "Poppins";
+
 	padding: 0.75rem 0.75rem;
 	flex: 1 1 18%;
+	height: 10rem;
 	min-width: 140px;
-	height: auto;
 	border-radius: 16px;
-	background: #ffe2e5;
-}
-
-.TopSales p,
-.TopOrder p,
-.ProductSold p,
-.NewCustomers p {
-	font-family: "Poppins";
-	font-weight: 400;
-	line-height: 1;
-	letter-spacing: 0.02rem;
-	font-size: 14px;
-	color: #000;
-	margin: 0;
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1450px) {
@@ -85,37 +56,35 @@
 	}
 }
 
-.TopSales {
-	background: #ffe2e5;
-}
-.TopOrder {
-	background: #fff4de;
-}
-.ProductSold {
-	background: #dcfce7;
-}
-.NewCustomers {
-	background: #f3e8ff;
-}
-
-/* Responsive: stack cards on small screens */
 @media (max-width: 768px) {
+	.main_container {
+		max-height: none;
+		height: auto;
+	}
+
 	.container {
-		flex-direction: column;
-		align-items: stretch;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.5rem;
+		height: auto;
+		padding-bottom: 0.5rem;
 	}
 
 	.TopSales,
 	.TopOrder,
 	.ProductSold,
 	.NewCustomers {
-		flex: 0 0 100%;
-		min-width: 0;
 		width: 100%;
+		flex: none;
+		min-width: 0;
+		height: auto;
+		min-height: 120px;
+		padding: 0.5rem;
 	}
 
 	.text {
 		padding: 0.5rem 0;
-		margin-bottom: 0.5rem;
+		margin-bottom: 0;
+		height: auto;
 	}
 }

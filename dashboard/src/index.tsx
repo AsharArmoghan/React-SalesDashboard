@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
@@ -8,17 +7,25 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import { AuthContextProvider } from "./Context/AuthContext";
 import { ProductContextProvider } from "./Context/ProductContext";
+import { AnimationProvider } from "./components/AnimationProvider";
+import { createRoot } from "react-dom/client";
+import { ThemeProvider } from "./Context/ThemeContext";
 
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = createRoot(container!);
+root.render(
 	<React.StrictMode>
-		<AuthContextProvider>
-			<ProductContextProvider>
-				<BrowserRouter>
-					<App />
-				</BrowserRouter>
-			</ProductContextProvider>
-		</AuthContextProvider>
-	</React.StrictMode>,
-	document.getElementById("root")
+		<ThemeProvider>
+			<AuthContextProvider>
+				<ProductContextProvider>
+					<BrowserRouter>
+						<AnimationProvider>
+							<App />
+						</AnimationProvider>
+					</BrowserRouter>
+				</ProductContextProvider>
+			</AuthContextProvider>
+		</ThemeProvider>
+	</React.StrictMode>
 );
 reportWebVitals();

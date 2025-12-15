@@ -5,8 +5,6 @@ import { LoadingComponent } from "../components/Loading/loadingScreen";
 import PrivateRoute from "./privateRoute";
 import Layout from "@/components/Layout/layout";
 
-//loadable component with lazy loading other components
-
 const loadable = (Component: any) => (props: any) =>
 	(
 		<Suspense fallback={<LoadingComponent />}>
@@ -50,6 +48,17 @@ const Error = loadable(
 	})
 );
 
+const Sales = loadable(
+	lazy(async () => {
+		return new Promise(resolve => setTimeout(resolve, 1.5 * 1000)).then(() => import("../Pages/Sales/Sales"));
+	})
+);
+const LeaderBoard = loadable(
+	lazy(async () => {
+		return new Promise(resolve => setTimeout(resolve, 1.5 * 1000)).then(() => import("../Pages/LeaderBoard/LeaderBoard"));
+	})
+);
+
 export default function AppRoutes() {
 	return useRoutes([
 		{
@@ -65,6 +74,8 @@ export default function AppRoutes() {
 				{ path: "products", element: <Products /> },
 				{ path: "orders", element: <Orders /> },
 				{ path: "add-products", element: <AddProducts /> },
+				{ path: "sales", element: <Sales /> },
+				{ path: "board", element: <LeaderBoard /> },
 				// { path: "charts", element: <Charts /> },
 				// { path: "settings", element: <Settings /> },
 				// { path: "notifications", element: <Notifications /> },

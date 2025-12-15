@@ -1,7 +1,8 @@
 import { ProductContext } from "../Context/ProductContext";
 import { useContext } from "react";
+import { ProductContextType } from "../Types/Dashboard";
 
-export const useProductContext = () => {
+export const useProductContext = (): ProductContextType => {
 	const context = useContext(ProductContext);
 
 	if (!context) {

@@ -1,109 +1,73 @@
 .home_main {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-areas:
+		"top top"
+		"nav content";
+	grid-template-rows: auto 1fr;
+	grid-template-columns: auto 1fr;
 	width: 100%;
 	min-height: 100vh;
-	overflow-x: hidden;
-	background-color: #eaeaea;
+	overflow: hidden;
 	z-index: 1;
 	box-sizing: border-box;
 }
 
-.navBar {
-	flex-shrink: 0;
-	z-index: 5;
-	display: block;
-}
-
 .topBar {
-	flex-shrink: 0;
-	z-index: 5;
+	grid-area: top;
+	top: 0;
+	z-index: 10;
 	width: 100%;
+	position: fixed;
 }
 
-.main {
-	display: flex;
-	flex: 1;
-	width: 100%;
-	overflow: hidden;
-	box-sizing: border-box;
+.navBar {
+	grid-area: nav;
+	z-index: 5;
+	left: 0;
+	position: fixed;
+	height: 100vh;
+	padding-top: 2.5rem;
 }
 
 .content {
-	flex: 1;
+	grid-area: content;
 	overflow-y: auto;
 	overflow-x: hidden;
+	position: relative;
 	scroll-behavior: smooth;
-	width: 100%;
+	width: auto;
+	margin-left: 9rem;
+	margin-top: 4.5rem;
+	height: 100%;
 	box-sizing: border-box;
 }
 
-/* Desktop: Sidebar layout */
+/* Desktop: ensure minimal confusion, though grid handles it inherently */
 @media (min-width: 768px) {
-	.home_main {
-		flex-direction: column;
-		height: 100vh;
-	}
-
-	.topBar {
-		width: 100%;
-		order: 1;
-	}
-
-	.main {
-		display: flex;
-		flex-direction: row;
-		flex: 1;
-		width: 100%;
-		min-height: 0;
-		overflow: hidden;
-	}
-
-	.navBar {
-		flex-shrink: 0;
-		min-width: 0;
-		z-index: 5;
-	}
-
-	.content {
-		flex: 1;
-		overflow-y: auto;
-		overflow-x: hidden;
-		min-width: 0;
-		min-height: 0;
-	}
+	/* Grid layout is default above */
 }
 
 /* Mobile: < 768px - Stack layout */
 @media (max-width: 767px) {
 	.home_main {
-		flex-direction: column;
-		min-height: 100vh;
-		overflow-y: auto;
-	}
-
-	.topBar {
-		width: 100%;
-		order: 1;
-		flex-shrink: 0;
+		grid-template-areas:
+			"top"
+			"content";
+		grid-template-rows: auto 1fr;
+		grid-template-columns: 1fr;
 	}
 
 	.navBar {
-		display: none;
-	}
-
-	.main {
-		flex-direction: column;
-		flex: 1;
-		width: 100%;
-		overflow: hidden;
+		display: block;
+		position: static;
+		width: 0;
+		height: 0;
+		padding: 0;
+		z-index: auto;
 	}
 
 	.content {
-		flex: 1;
-		overflow-y: auto;
-		overflow-x: hidden;
-		width: 100%;
-		min-height: 0;
+		margin-left: 0;
+		margin-top: 5rem;
 	}
 }

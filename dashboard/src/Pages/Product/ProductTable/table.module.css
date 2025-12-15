@@ -1,28 +1,64 @@
 .table_container {
 	width: 100%;
+	/* Light Mode Variables */
+	--bg-header: #f2f2f2;
+	--bg-row-odd: #ffffff;
+	--bg-row-even: #ddf3ff;
+	--bg-row-hover: #f5f5f5;
+	--border-color: #ddd;
+	--text-primary: #1d1e2c; /* Based on --black-color */
+	--text-header: #1d1e2c;
+
+	transition: all 0.3s ease;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	border-radius: 8px; /* Optional: adds rounded corners to the scroll container */
+}
+
+/* Dark Mode Overrides */
+:global(.dark) .table_container {
+	--bg-header: oklch(0.2 0 0);
+	--bg-row-odd: oklch(0.15 0 0);
+	--bg-row-even: oklch(0.22 0.05 250);
+	--bg-row-hover: oklch(0.25 0 0);
+	--border-color: oklch(0.3 0 0);
+	--text-primary: oklch(0.95 0 0);
+	--text-header: oklch(0.95 0 0);
 }
 
 table {
 	width: 100%;
 	border-collapse: collapse;
+	color: var(--text-primary);
 }
 
 th,
 td {
-	padding: 8px;
-	text-align: center;
-	border-bottom: 1px solid #ddd;
+	padding: 12px 16px; /* Increased padding for better readability/premium feel */
+	text-align: left; /* Modern tables often align left */
+	border-bottom: 1px solid var(--border-color);
+	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+	white-space: nowrap;
 }
 
 th {
-	background-color: #f2f2f2;
-	font-weight: bold;
+	background-color: var(--bg-header);
+	font-weight: 600;
+	color: var(--text-header);
+	text-transform: uppercase; /* Optional: adds a bit of structure */
+	font-size: 0.85rem;
+	letter-spacing: 0.05em;
+}
+
+tbody tr {
+	transition: background-color 0.2s ease;
+	background-color: var(--bg-row-odd);
 }
 
 tbody tr:nth-child(even) {
-	background-color: #ddf3ff;
+	background-color: var(--bg-row-even);
 }
 
 tbody tr:hover {
-	background-color: #f5f5f5;
+	background-color: var(--bg-row-hover);
 }

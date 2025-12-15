@@ -3,29 +3,28 @@ const Bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 exports.signup = async (req, res) => {
-	let createduser;
-	console.log(req.body.email);
-	const user = await User.findOne({
-		email: req.body.email,
-	});
-	if (user.email === req.body.email) {
-		return res.status(400).json({ message: "User already register", error: "User already register" });
-	} else if (req.body) {
-		await Bcrypt.hash(req.body.password, 10)
-			.then(hash => {
-				const user = new User({
-					username: req.body.username,
-					email: req.body.email,
-					password: hash,
-				});
-				const token = jwt.sign({ userId: user._id, email: user.email }, process.env.SECRET, { algorithm: "HS256", expiresIn: "1h" });
-				user.save();
-				res.status(200).json({ message: "User Created", token, expiresIn: "1h", userId: user._id });
-			})
-			.catch(() => res.status(500).json({ error: "something went wrong" }));
-		createduser.save();
+	try {
+		const user = await User.findOne({
+			email: req.body.email,
+		});
+		if (user) {
+			return res.status(400).json({ message: "User already register", error: "User already register" });
+		}
 
-		res.status(200).json({ message: "User Created" });
+		const hash = await Bcrypt.hash(req.body.password, 10);
+		const newUser = new User({
+			username: req.body.username,
+			email: req.body.email,
+			password: hash,
+		});
+
+		await newUser.save();
+		const token = jwt.sign({ userId: newUser._id, email: newUser.email }, process.env.SECRET, { algorithm: "HS256", expiresIn: "1h" });
+
+		res.status(200).json({ message: "User Created", token, expiresIn: "1h", userId: newUser._id });
+	} catch (err) {
+		console.log(err);
+		res.status(500).json({ error: "something went wrong" });
 	}
 };
 

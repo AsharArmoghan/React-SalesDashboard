@@ -1,0 +1,57 @@
+.sales_main {
+	width: 100%;
+	max-height: auto;
+	height: auto;
+	padding-bottom: 2rem;
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto auto;
+	grid-template-areas:
+		"topSales topRevenue"
+		"targetReality topProducts";
+}
+
+.topSales {
+	grid-area: topSales;
+}
+
+.targetReality {
+	grid-area: targetReality;
+}
+
+.topRevenue {
+	grid-area: topRevenue;
+}
+
+.topProducts {
+	grid-area: topProducts;
+}
+
+/* Mobile: < 768px */
+@media (max-width: 767px) {
+	.sales_main {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+		grid-template-areas:
+			"topSales"
+			"targetReality"
+			"topRevenue"
+			"topProducts";
+		gap: 1rem;
+		padding: 1rem;
+	}
+}
+
+/* Tablet: 768px - 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+	.sales_main {
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto;
+		grid-template-areas:
+			"topSales topSales"
+			"targetReality targetReality"
+			"topRevenue topRevenue"
+			"topProducts topProducts";
+	}
+}
